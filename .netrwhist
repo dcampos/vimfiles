@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/campos/Dropbox/Projetos/dsoo2/leilao/app/views/layouts'
+let g:netrw_dirhist_2='/home/campos/Dropbox/Projetos/dsoo2/leilao/app/views/lances'
+let g:netrw_dirhist_3='/home/campos/Dropbox/Projetos/dsoo2/leilao/app/views'
+let g:netrw_dirhist_4='/home/campos/Dropbox/Projetos/dsoo2/leilao/app/views/produtos'
