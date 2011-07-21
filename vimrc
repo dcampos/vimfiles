@@ -220,10 +220,12 @@ if has("gui_running")
         set guifont=Dejavu\ Sans\ mono 
     elseif MySys() == "linux"
         set bg=dark
-        colors vitamins
+        colors wombat
         set guifont=Liberation\ mono
     endif
 else
     colors ron 
 endif
+
+autocmd BufNewFile,BufRead *.tt set ft=html
 
