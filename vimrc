@@ -85,6 +85,7 @@ map ,O O<ESC>:echo<CR>
 " Isto é para a lista de tags
 let Tlist_Inc_Winwidth = 0
 map <F3> :Tlist<CR>
+map <F2> :NERDTreeToggle<CR>
 
 " maps the word completion to the TAB key
 "function InsertTabWrapper()
