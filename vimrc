@@ -106,8 +106,8 @@ imap <C-Space> <C-X><C-O>
 map <F6> :%s/^\t*\s*$//g<CR>
 
 " To save, press ctrl-s.
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+"nmap <c-s> :w<CR>
+"imap <c-s> <Esc>:w<CR>a
 
 " Barra de espaço/backspace mapeados para PageDown/PageUp no modo de comandos
 noremap <Space> 

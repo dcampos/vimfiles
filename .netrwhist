@@ -1,2 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/campos/Dropbox/Invest/conf'
+let g:netrw_dirhist_2='/home/campos/Dropbox/Invest'
+let g:netrw_dirhist_3='/home/campos/Dropbox/Invest/.gt'
+let g:netrw_dirhist_4='/home/campos/Dropbox/Documentos/Financeiro/moneylog-beta/sample'
