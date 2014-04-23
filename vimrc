@@ -1,15 +1,78 @@
 " Maintainer: Darlan de Campos <darlanpedro (a) gmail com>
 " License: Public Domain
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Opções básicas
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-
 set nocompatible
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" START VUNDLE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/vim_local/bundle/vundle/
+
+call vundle#rc("$HOME/vim_local/bundle/")
+
+" alternatively, pass a path where Vundle should install plugins
+"let path = '~/some/path/here'
+"call vundle#rc(path)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between here and filetype plugin indent on.
+" scripts on GitHub repos
+"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-perl/vim-perl'
+Bundle 'Yggdroot/indentLine'
+Plugin 'kien/ctrlp.vim'
+"Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
+"Plugin 'tpope/vim-rails.git'
+"Bundle 'flazz/vim-colorschemes'
+"
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" scripts from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+"Plugin 'FuzzyFinder'
+Plugin 'ack.vim'
+Plugin 'SingleCompile'
+Plugin 'EnhCommentify.vim'
+
+" scripts not on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" ...
+
+filetype plugin indent on     " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin commands are not allowed.
+" Put your stuff after this line
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" END VUNDLE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Nenhum aviso visual
 set visualbell
@@ -41,7 +104,7 @@ set incsearch
 
 " Interface
 set background=dark
-"set cursorline
+set cursorline
 syntax on
 filetype plugin on
 
@@ -67,9 +130,17 @@ set clipboard=unnamed
 " Codificação do texto
 set encoding=iso88591
 
-" Adiciona _ à iskeyword
+" Adiciona _ a iskeyword
 set iskeyword+=_
 
+" Área de transferência
+if has("unnamedplus")
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+endif
+
+set encoding=utf8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -105,9 +176,6 @@ imap <C-Space> <C-X><C-O>
 "map <F5> :!java %:r<CR>
 map <F6> :%s/^\t*\s*$//g<CR>
 
-" To save, press ctrl-s.
-"nmap <c-s> :w<CR>
-"imap <c-s> <Esc>:w<CR>a
 
 " Barra de espaço/backspace mapeados para PageDown/PageUp no modo de comandos
 noremap <Space> 
@@ -136,6 +204,9 @@ endif
 " Remover endentação
 imap <S-Tab> <C-o><<
 
+
+nmap <F9> :SCCompile<cr>
+nmap <F10> :SCCompileRun<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -181,6 +252,9 @@ autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 shiftwidth=2
 " Arquivos tt2: tratar como html
 au BufNewFile,BufRead *.tt2 set ft=html
 
+" Arquivos lpr: tratar como pascal
+au BufNewFile,BufRead *.lpr set ft=pascal
+
 " Muda para o diretório do arquivo atual
 autocmd BufEnter * lcd %:p:h
 
@@ -207,6 +281,14 @@ autocmd Filetype *
         \   endif
 endif
 
+"au BufRead,BufNewFile *.txt set spell
+augroup CursorLine
+  autocmd!
+
+  " Only highlight cursor line in active buffer window
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " GUI
@@ -215,18 +297,40 @@ endif
 if has("gui_running")
     set columns=100 lines=40
     set guioptions-=T                  " -toolbar
+
+
+    " To save, press ctrl-s.
+    nmap <c-s> :w<CR>
+    imap <c-s> <Esc>:w<CR>a
+
     if MySys() == "windows"
         set bg=light
         colors rootwater
         set guifont=Dejavu\ Sans\ mono 
     elseif MySys() == "linux"
         set bg=dark
-        colors wombat
-        set guifont=Liberation\ mono
+"        colors nazca
+        colors kolor
+        set guifont=Ubuntu\ mono\ 12
     endif
 else
     colors ron 
+"    colors ir_black
 endif
 
 autocmd BufNewFile,BufRead *.tt set ft=html
+
+" TOHTML
+"let g:html_use_css=0
+let g:html_number_lines=0
+
+" NERDTree
+"let g:NERDTreeDirArrows=0
+
+" Syntastic
+let g:syntastic_enable_perl_checker=1
+
+" Abrir URL sob o cursor
+let g:netrw_browsex_viewer = 'firefox'
+
 

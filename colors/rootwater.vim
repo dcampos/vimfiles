@@ -63,7 +63,7 @@ hi Number	guifg=#77dd88
 hi Char		guifg=#77dd88
 hi String	guifg=#77dd88
 hi Boolean	guifg=#77dd88
-hi Comment	guifg=#656565 gui=italic
+hi Comment	guifg=#656565
 hi Constant	guifg=#88ee99			gui=none
 hi Identifier	guifg=white
 hi Statement    guifg=#8fffff			gui=none
