@@ -1,0 +1,34 @@
+" escuros
+256-grayvim
+256-jungle
+native
+paintbox
+++solarized
+++obsidian
+++nazca
+native
+neon
+mrpink
+molokai
+luna
++kolor
+herald
+getafe
+codeblocks_dark
+bensday
+badwolf
+darkburn
+getfresh
+hemisu (claro/escuro)
+no_quarter (perl)
+
+" claros
+eclipse
+kate
+vcbc
+
+" antigos
+digerati
+mustang
+vitamins
+github

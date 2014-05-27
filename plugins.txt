@@ -1,0 +1,21 @@
+Plugins para testar:
+
+[ ] Shougo/neocomplete.vim
+[ ] Shougo/neosnippet.vim
+[ ] Shougo/vimfiler.vim
+[+] Supertab
+[+] Autocomplete
+[+] vim-rooter
+[+] UltiSnips
+[+] delimitMate
+[ ] sparkup
+[ ] emmet-vim
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
