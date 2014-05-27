@@ -374,7 +374,8 @@ if has("gui_running")
     if MySys() == "windows"
         set bg=light
         colors rootwater
-        set guifont=Dejavu\ Sans\ mono
+        " set guifont=Dejavu\ Sans\ mono
+        set guifont=Consolas\ 11
     elseif MySys() == "linux"
         set bg=dark
         " colors nazca
