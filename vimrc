@@ -1,54 +1,78 @@
-" Maintainer: Darlan de Campos <darlanpedro (a) gmail com>
+" Maintainer: Darlan P. de Campos <darlanpedro (a) gmail com>
 " License: Public Domain
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" OpÁıes b·sicas
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" VUNDLE {{{
 
 set nocompatible
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" START VUNDLE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/vim_local/bundle/vundle/
 
-call vundle#rc("$HOME/vim_local/bundle/")
-
-" alternatively, pass a path where Vundle should install plugins
-"let path = '~/some/path/here'
-"call vundle#rc(path)
+call vundle#rc(g:home_prefix . "/vim_local/bundle/")
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
-" The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
 " scripts on GitHub repos
 "Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-dispatch'
+" Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'vim-perl/vim-perl'
-Bundle 'Yggdroot/indentLine'
+Plugin 'c9s/perlomni.vim'
+Plugin 'Yggdroot/indentLine'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tyru/open-browser.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'bling/vim-airline'
+" Plugin 'chriskempson/base16-vim'
+
+" Requisito: Python
+if MySys() == "linux"
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+endif
+
+" Plugin 'drmingdrmer/xptemplate'
+" Plugin 'ludovicchabant/vim-lawrencium'
+
+" http://www.lucianofiandesio.com/vim-configuration-for-happy-java-coding
+Plugin 'ervandew/supertab'
+Plugin 'Raimondi/delimitMate'
+Plugin 'airblade/vim-rooter'
+
+" Plugin 'Valloric/YouCompleteMe'
+
+" Plugin 'Marslo/EnhCommentify.vim'
+Plugin 'tomtom/tcomment_vim'
+
 "Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
 "Plugin 'tpope/vim-rails.git'
-"Bundle 'flazz/vim-colorschemes'
-"
+
+" Plugin 'flazz/vim-colorschemes'
+
+" Reposit√≥rios pessoais/forks
+Plugin 'dcampos/vim-aldmeris'
+Plugin 'dcampos/proguard.vim'
+
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " scripts from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+" Plugin 'L9'
 "Plugin 'FuzzyFinder'
 Plugin 'ack.vim'
-Plugin 'SingleCompile'
-Plugin 'EnhCommentify.vim'
+" Plugin 'SingleCompile'
+" Plugin 'TagHighlight'
 
 " scripts not on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -56,56 +80,69 @@ Plugin 'EnhCommentify.vim'
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " ...
 
+" call vundle#end()             " required (?)
 filetype plugin indent on     " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Plugin commands are not allowed.
-" Put your stuff after this line
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" END VUNDLE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" END VUNDLE }}}
+
+
+" DEFINI√á√ïES {{{
+
+" Mapleader: configura a tecla <leader>.
+let mapleader = ","
+let g:mapleader = ","
+
+nnoremap ,, ,
+vnoremap ,, ,
 
 " Nenhum aviso visual
 set visualbell
 
+set noerrorbells
+
+" N√∫meros de linhas
 set number
 set linebreak
 
-" CorreÁ„o ortogr·fica
+" Corre√ß√£o ortogr√°fica
 set spelllang=pt
 set spellfile=~/vim_local/spell.pt.latin1.add
 
 " Recuo de texto
 set tabstop=4
 set shiftwidth=4
-set noautoindent
-set smartindent
-set expandtab
+set expandtab               " Expandir <tab> para espa√ßos equivalentes
+set smarttab                " <BS> apaga <tab> e espa√ßos equivalentes
+set autoindent
+" set smartindent           " Obsoleto
 
+" Backspace em mais de uma linha
 set backspace=eol,start,indent
 
 set nobackup
 set noswapfile
 
-set history=50
+" Hist√≥rico da linha de comando
+set history=500
 
 set ignorecase smartcase
 
+" Busca incremental
 set incsearch
 
 " Interface
 set background=dark
-set cursorline
+
+" Deixa a rolagem lenta
+"set cursorline
+
+" Habilita o suporte a sintaxe
 syntax on
+
 filetype plugin on
 
 " Linha de status
@@ -124,124 +161,145 @@ set statusline+=%<%P                         " file position
 " Menu para completar comandos
 set wildmenu
 
-" Usar ·rea de transferÍncia como padr„o
+" Usar √°rea de transfer√™ncia como padr√£o
 set clipboard=unnamed
 
-" CodificaÁ„o do texto
+" Codifica√ß√£o do texto
 set encoding=iso88591
 
 " Adiciona _ a iskeyword
 set iskeyword+=_
 
-" ¡rea de transferÍncia
+" √Årea de transfer√™ncia
 if has("unnamedplus")
-  set clipboard=unnamedplus
+    set clipboard=unnamedplus
 else
-  set clipboard=unnamed
+    set clipboard=unnamed
 endif
 
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
+
+" Necess√°rio para exibir corretamente todos os caracteres
 set encoding=utf8
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Mapeamentos
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
 
+
+" MAPEAMENTOS {{{
 
 " Inserir linhas e continuar em modo normal
-map ,o o<ESC>:echo<CR>
-map ,O O<ESC>:echo<CR>
+noremap <leader>o o<ESC>:echo<CR>
+noremap <leader>O O<ESC>:echo<CR>
 
-" Isto È para a lista de tags
-let Tlist_Inc_Winwidth = 0
-map <F3> :Tlist<CR>
-map <F2> :NERDTreeToggle<CR>
+" Isto √© para a lista de tags
+noremap <F4> :Tagbar<CR>
 
-" maps the word completion to the TAB key
-"function InsertTabWrapper()
-"      let col = col('.') - 1
-"      if !col || getline('.')[col - 1] !~ '\k'
-"          return "\<tab>"
-"      else
-"          return "\<c-p>"
-"      endif
-"endfunction 
-"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" NERDTree
+noremap <F2> :NERDTreeToggle<CR>
 
-" Ctrl+espaÁo mapeado para omnicompletion
-imap <C-Space> <C-X><C-O> 
+" Ctrl+espa√ßo mapeado para omnicompletion
+inoremap <C-Space> <C-X><C-O>
 
-"map <F4> :w<CR>:!javac %<CR>
-"map <F5> :!java %:r<CR>
-map <F6> :%s/^\t*\s*$//g<CR>
+noremap <F6> :%s/^\t*\s*$//g<CR>
 
 
-" Barra de espaÁo/backspace mapeados para PageDown/PageUp no modo de comandos
+" Barra de espa√ßo/backspace mapeados para PageDown/PageUp no modo de comandos
 noremap <Space> 
 noremap <BS> 
 
 " Abas
-noremap <C-Tab> :tabnext<CR>     " PrÛxima aba
-noremap <Leader>tc :tabclose<CR> " Fechar aba
+nnoremap <C-Tab> :tabnext<CR>       " Pr√≥xima aba
+nnoremap <S-C-Tab> :tabprev<CR>     " Aba anterior
+nnoremap <Leader>tc :tabclose<CR>   " Fechar aba
 
-" Salva/recarrega sess„o
-nmap <c-q>s :mksession! ~/vim_local/session<cr>
-nmap <c-q>r :source ~/vim_local/session<cr>
+" Janelas
+noremap <C-j> <C-w>j               " Janela abaixo
+noremap <leader>j <C-w>j               " Janela abaixo
+noremap <C-k> <C-w>k               " Janela acima
+noremap <C-h> <C-w>h               " Janela √† esquerda
+noremap <C-l> <C-w>l               " Janela √† direita
+
+" Tamanho das janelas (buffers)
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" Salva/recarrega sess√£o
+nnoremap <c-q>s :mksession! ~/vim_local/session<cr>
+nnoremap <c-q>r :source ~/vim_local/session<cr>
 
 " this makes the mouse paste a block of text without formatting it
 " (good for code)
-map <MouseMiddle> <esc>"*p
+" noremap <MouseMiddle> <esc>"*p
 
 " Insere data e hora atual
 nnoremap <c-f5> "=strftime("%d/%m/%y %T")<cr>P
 
 " Abre arquivo de tarefas
-if MySys() == "windows"
-    nnoremap <F4> :tabe ~/˙til/tarefas.txt<cr>
-endif
+"if MySys() == "windows"
+"    nnoremap <F4> :tabe ~/√∫til/tarefas.txt<cr>
+"endif
 
-" Remover endentaÁ„o
-imap <S-Tab> <C-o><<
+" Remover endenta√ß√£o
+inoremap <S-Tab> <C-o><<
+
+" Comandos do SingleCompile
+nnoremap <F9> :SCCompile<cr>
+nnoremap <F10> :SCCompileRun<cr>
+
+" Abrir links da web/pesquisar palavras
+" let g:netrw_nogx = 1 " disable netrw's gx mapping.
+
+" nnoremap gx <Plug>(openbrowser-smart-search)
+" vnoremap gx <Plug>(openbrowser-smart-search)
+let g:netrw_browsex_viewer='firefox'
+
+" Navega√ß√£o por linhas visuais
+
+noremap j gj
+noremap k gk
+
+" Corre√ß√£o ortogr√°fica
+noremap <leader>ss :set spell!<cr>
+
+" sudo
+cnoremap w!! %!sudo tee > /dev/null %
+
+" }}}
 
 
-nmap <F9> :SCCompile<cr>
-nmap <F10> :SCCompileRun<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" AbreviaÁıes
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ABREVIA√á√ïES {{{
 
 
 " Evitar erros ao salvar/sair
 cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
 
+iabbrev enquatno enquanto
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Diversos/auto-comandos
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+
+" DIVERSOS/AUTO-COMANDOS {{{
 
 " Perl
-" Isto È para o perldoc.vim
-autocmd BufNewFile,BufRead *.p{l,m} setf perl
-if MySys() == "linux"
-    autocmd BufNewFile,BufRead *.p{l,m} map <F1> :Perldoc<cword><CR>
-    autocmd BufNewFile,BufRead *.p{l,m} let g:perldoc_program='/usr/bin/perldoc'
-    autocmd BufNewFile,BufRead *.p{l,m} source ~/vim_local/ftplugin/perl_doc.vim
-endif
-" Use o compilador do Perl para todos os arquivos com extens„o *.pl e *.pm
+" Isto √© para o perldoc.vim
+" autocmd BufNewFile,BufRead *.p{l,m} setf perl
+" if MySys() == "linux"
+"     autocmd BufNewFile,BufRead *.p{l,m} map <F1> :Perldoc<cword><CR>
+"     autocmd BufNewFile,BufRead *.p{l,m} let g:perldoc_program='/usr/bin/perldoc'
+    " autocmd BufNewFile,BufRead *.p{l,m} source ~/vim_local/ftplugin/perl_doc.vim
+" endif
+
+" Use o compilador do Perl para todos os arquivos com extens√£o *.pl e *.pm
 autocmd BufNewFile,BufRead *.p{l,m} compiler perl
 
 " Python
-" Use o compilador Python para todos os arquivos com extens„o *.py
+" Use o compilador Python para todos os arquivos com extens√£o *.py
 autocmd BufNewFile,BufRead *.py compiler python
 
 " Java
-autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
+" autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
 
 " Ruby
 " Compilador
@@ -255,15 +313,22 @@ au BufNewFile,BufRead *.tt2 set ft=html
 " Arquivos lpr: tratar como pascal
 au BufNewFile,BufRead *.lpr set ft=pascal
 
-" Muda para o diretÛrio do arquivo atual
-autocmd BufEnter * lcd %:p:h
+" Arquivos md: tratar como markdown
+au BufNewFile,BufRead *.md set ft=markdown
+
+" Arquivos do ProGuard
+" au BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
+
+" Muda para o diret√≥rio do arquivo atual
+" autocmd BufEnter * lcd %:p:h
+autocmd BufEnter * Rooter
 
 " Inserir modelo quando iniciar novo arquivo
 augroup templates
     au!
     " read in template files
     autocmd BufNewFile *.* silent! execute '0r ~/vim_local/templates/template.'.expand("<afile>:e")
-    
+
     " parse special text in the templates after the read
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
@@ -275,23 +340,26 @@ autocmd BufNewFile,BufRead *.java source ~/vim_local/JavaRun.vim
 
 " Omnicomplete
 if has("autocmd") && exists("+omnifunc")
-autocmd Filetype *
-        \   if &omnifunc == "" |
-        \       setlocal omnifunc=syntaxcomplete#Complete |
-        \   endif
+    autocmd Filetype *
+                \   if &omnifunc == "" |
+                \       setlocal omnifunc=syntaxcomplete#Complete |
+                \   endif
 endif
 
 "au BufRead,BufNewFile *.txt set spell
-augroup CursorLine
-  autocmd!
+"augroup CursorLine
+"  autocmd!
 
-  " Only highlight cursor line in active buffer window
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
-augroup END
+" Only highlight cursor line in active buffer window
+"  autocmd WinLeave * set nocursorline
+"  autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
+"augroup END
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUI
+" }}}
+
+
+" GUI {{{
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("gui_running")
@@ -306,31 +374,90 @@ if has("gui_running")
     if MySys() == "windows"
         set bg=light
         colors rootwater
-        set guifont=Dejavu\ Sans\ mono 
+        set guifont=Dejavu\ Sans\ mono
     elseif MySys() == "linux"
         set bg=dark
-"        colors nazca
-        colors kolor
-        set guifont=Ubuntu\ mono\ 12
+        " colors nazca
+        colors aldmeris
+        " set guifont=Ubuntu\ mono\ 12
+        " set guifont=Dejavu\ Sans\ mono
+        set guifont=Inconsolata\ for\ Powerline\ 12
+
+        " Mostrar s√≠mbolos especiais somente em Linux/Gvim
+        let g:airline_powerline_fonts=1
     endif
 else
-    colors ron 
-"    colors ir_black
+    " colors ron
+    colors ir_black
 endif
 
 autocmd BufNewFile,BufRead *.tt set ft=html
 
+" }}}
+
+
+" VARI√ÅVEIS DE CONFIGURA√á√ÉO {{{
+
 " TOHTML
-"let g:html_use_css=0
+" let g:html_use_css=0
 let g:html_number_lines=0
 
 " NERDTree
-"let g:NERDTreeDirArrows=0
+" let g:NERDTreeDirArrows=0          " N√£o exibir setas
 
 " Syntastic
 let g:syntastic_enable_perl_checker=1
 
 " Abrir URL sob o cursor
-let g:netrw_browsex_viewer = 'firefox'
+"let g:netrw_browsex_viewer = 'firefox'
 
+" Vim-airline
 
+if !has('g:airline_section_b')
+    let g:airline_section_b = '%<%{getcwd()}'
+endif
+
+" let g:airline_mode_map = {
+"     \ '__' : '-',
+"     \ 'n'  : 'N',
+"     \ 'i'  : 'I',
+"     \ 'R'  : 'R',
+"     \ 'c'  : 'C',
+"     \ 'v'  : 'V',
+"     \ 'V'  : 'V-L',
+"     \ '' : 'V-B',
+"     \ 's'  : 'S',
+"     \ 'S'  : 'S',
+"     \ '' : 'S',
+"     \ }
+let g:airline#extensions#branch#empty_message = '*'
+
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_spac = 1
+
+" Supertab
+" Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
+inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
+inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
+inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+
+let g:SuperTabCrMapping = 0
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<c-n>'
+
+" vim-rooter
+let g:rooter_change_directory_for_non_project_files = 1
+
+" IndentLine
+let g:indentLine_char='‚îÇ'
+
+" xptemplate
+" set runtimepath+=~/vim_local/xpt-personal/
+
+" }}}
+
+" vim:fdm=marker

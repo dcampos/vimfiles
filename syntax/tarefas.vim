@@ -13,8 +13,10 @@ hi link tarefasTexto String
 hi link tarefasData	Statement
 hi link tarefasSetor Normal
 hi link tarefaConcluida Comment
+hi link url Keyword
 
 " Elementos das tarefas
+syn match url " *http[^ ]\+"
 syn match tarefasTexto "[^:]*$"
 syn match tarefasData "^[^ ]\+"
 syn match tarefasSetor " +[^:]\+:"
