@@ -10,7 +10,7 @@ Plugins para testar:
 [+] delimitMate
 [ ] sparkup
 [ ] emmet-vim
-[ ] 
+[+] vim-dispatch
 [ ] 
 [ ] 
 [ ] 
