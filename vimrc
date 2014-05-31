@@ -333,8 +333,6 @@ augroup templates
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
 
-autocmd BufNewFile,BufRead *.java source ~/vim_local/JavaRun.vim
-
 " Cada arquivo em uma nova aba - causa alguns erros
 "au BufAdd,BufNewFile * nested tab sball
 
