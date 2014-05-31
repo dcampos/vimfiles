@@ -1,11 +1,6 @@
-SETUP
+Installation
 =====
 
-Install Vundle:
-
-`git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle`
-
-Run:
-
-`vim +'BundleInstall!'`
+1. Run `setup.sh` file.
+2. Copy or symlink vimrc-<os> to your home folder.  
 
