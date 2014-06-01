@@ -33,8 +33,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 " Plugin 'chriskempson/base16-vim'
+Plugin 'mileszs/ack.vim'
 
 " Requisito: Python
 if MySys() == "linux"
@@ -63,16 +65,6 @@ Plugin 'tomtom/tcomment_vim'
 " Repositórios pessoais/forks
 Plugin 'dcampos/vim-aldmeris'
 Plugin 'dcampos/proguard.vim'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" scripts from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-"Plugin 'FuzzyFinder'
-Plugin 'ack.vim'
-" Plugin 'SingleCompile'
-" Plugin 'TagHighlight'
 
 " scripts not on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -183,6 +175,11 @@ endif
 
 " Necessário para exibir corretamente todos os caracteres
 set encoding=utf8
+
+" Exibir espaços desnecessários
+highlight link ExtraWhitespace Error
+match ExtraWhitespace /\s\+$/
+
 
 " }}}
 
@@ -379,15 +376,19 @@ if has("gui_running")
         " colors nazca
         colors aldmeris
         " set guifont=Ubuntu\ mono\ 12
-        " set guifont=Dejavu\ Sans\ mono
-        set guifont=Inconsolata\ for\ Powerline\ 12
+        " set guifont=Inconsolata\ for\ Powerline\ 12
+        set guifont=Fantasque\ sans\ mono\ 12
 
         " Mostrar símbolos especiais somente em Linux/Gvim
         let g:airline_powerline_fonts=1
     endif
+
+    let g:indentLine_char='▸'
+
 else
     " colors ron
     colors ir_black
+    let g:indentLine_char='»'
 endif
 
 autocmd BufNewFile,BufRead *.tt set ft=html
@@ -451,8 +452,8 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>'
 " vim-rooter
 let g:rooter_change_directory_for_non_project_files = 1
 
-" IndentLine
-let g:indentLine_char='│'
+" IndentLine - ver acima: GUI
+" let g:indentLine_char='│'
 
 " xptemplate
 " set runtimepath+=~/vim_local/xpt-personal/
