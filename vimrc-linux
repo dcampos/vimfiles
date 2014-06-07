@@ -1,13 +1,6 @@
 " Vim configuration for Linux
 
-fun! MySys()
-    return "linux"
-endfun
-
 let g:home_prefix = '~/'
-
-exec "set rtp=" . g:home_prefix . "vim_local,$VIMRUNTIME"
-exec "set rtp+=" . g:home_prefix ."vim_local/bundle/vundle/"
 
 exec "source " . g:home_prefix ."vim_local/vimrc"
 

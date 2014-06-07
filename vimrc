@@ -9,6 +9,9 @@ let s:vim_folder = g:home_prefix . "vim_local/"
 " Carregar funções auxiliares
 exec "source" s:vim_folder . "functions.vim"
 
+exec "set rtp=" . s:vim_folder . ",$VIMRUNTIME"
+exec "set rtp+=" . s:vim_folder . "bundle/vundle/"
+
 " }}}
 
 " VUNDLE {{{

@@ -3,6 +3,8 @@ if exists('g:loaded_functions')
 endif
 let g:loaded_functions = 1
 
+" Detect current OS
+" Source: http://unix.stackexchange.com/a/40370
 function! MySys()
     if has("win32")
         return "win"
@@ -11,7 +13,7 @@ function! MySys()
         if system('uname')=~'Darwin'
             return "mac"
         else
-            return "Linux"
+            return "linux"
         endif
     endif
 endfunction
