@@ -1,6 +1,15 @@
 " Maintainer: Darlan P. de Campos <darlanpedro (a) gmail com>
 " License: Public Domain
 
+" INÍCIO {{{
+
+" Pasta do Vim
+let s:vim_folder = g:home_prefix . "vim_local/"
+
+" Carregar funções auxiliares
+exec "source" s:vim_folder . "functions.vim"
+
+" }}}
 
 " VUNDLE {{{
 
@@ -10,7 +19,7 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 
-call vundle#rc(g:home_prefix . "/vim_local/bundle/")
+call vundle#rc(s:vim_folder . "bundle/")
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
@@ -324,7 +333,7 @@ autocmd BufEnter * Rooter
 augroup templates
     au!
     " read in template files
-    autocmd BufNewFile *.* silent! execute '0r ~/vim_local/templates/template.'.expand("<afile>:e")
+    autocmd BufNewFile *.* silent! execute '0r ' . s:vim_folder . 'templates/template.'.expand("<afile>:e")
 
     " parse special text in the templates after the read
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
