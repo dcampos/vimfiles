@@ -2,5 +2,5 @@
 
 let g:home_prefix = '~/'
 
-exec "source " . g:home_prefix ."vim_local/vimrc"
+exec "source" g:home_prefix . "vim_local/vimrc"
 
