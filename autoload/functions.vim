@@ -1,11 +1,6 @@
-if exists('g:loaded_functions')
-    finish
-endif
-let g:loaded_functions = 1
-
 " Detect current OS
 " Source: http://unix.stackexchange.com/a/40370
-function! MySys()
+function! functions#MySys()
     if has("win32")
         return "win"
     endif

@@ -6,11 +6,10 @@
 " Pasta do Vim
 let s:vim_folder = g:home_prefix . "vim_local/"
 
-" Carregar funções auxiliares
-exec "source" s:vim_folder . "functions.vim"
-
 exec "set rtp=" . s:vim_folder . ",$VIMRUNTIME"
 exec "set rtp+=" . s:vim_folder . "bundle/vundle/"
+
+let g:mysys = functions#MySys()
 
 " }}}
 
@@ -51,7 +50,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'mileszs/ack.vim'
 
 " Requisito: Python
-if MySys() == "linux"
+if g:mysys == "linux"
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
 endif
@@ -378,12 +377,12 @@ if has("gui_running")
     nmap <c-s> :w<CR>
     imap <c-s> <Esc>:w<CR>a
 
-    if MySys() == "windows"
+    if g:mysys == "windows"
         set bg=light
         colors rootwater
         set guifont=Dejavu\ Sans\ mono
         " set guifont=Consolas\ 11
-    elseif MySys() == "linux"
+    elseif g:mysys == "linux"
         set bg=dark
         " colors nazca
         colors aldmeris
