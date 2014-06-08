@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -44,8 +45,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'bling/vim-airline'
-Plugin 'itchyny/lightline.vim'
+Plugin 'bling/vim-airline'
+" Plugin 'itchyny/lightline.vim'
 " Plugin 'chriskempson/base16-vim'
 Plugin 'mileszs/ack.vim'
 
@@ -425,7 +426,7 @@ let g:syntastic_enable_perl_checker=1
 " Vim-airline
 
 if !has('g:airline_section_b')
-    let g:airline_section_b = '%<%{getcwd()}'
+    " let g:airline_section_b = '%<%{getcwd()}'
 endif
 
 " let g:airline_mode_map = {
