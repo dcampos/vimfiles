@@ -9,9 +9,12 @@ let s:vim_folder = g:home_prefix . "vim_local/"
 exec "set rtp=" . s:vim_folder . ",$VIMRUNTIME"
 exec "set rtp+=" . s:vim_folder . "bundle/vundle/"
 
-let g:mysys = functions#MySys()
+runtime plugin/functions.vim
+
+let g:mysys = MySys()
 
 " }}}
+
 
 " VUNDLE {{{
 

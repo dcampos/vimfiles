@@ -1,6 +1,6 @@
 " Detect current OS
 " Source: http://unix.stackexchange.com/a/40370
-function! functions#MySys()
+function! MySys()
     if has("win32")
         return "win"
     endif
