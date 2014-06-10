@@ -380,7 +380,7 @@ if has("gui_running")
     nmap <c-s> :w<CR>
     imap <c-s> <Esc>:w<CR>a
 
-    if g:mysys == "windows"
+    if g:mysys == "win"
         set bg=light
         colors rootwater
         set guifont=Dejavu\ Sans\ mono
