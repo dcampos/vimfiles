@@ -96,6 +96,83 @@ filetype plugin indent on     " required
 " END VUNDLE }}}
 
 
+" VARIÁVEIS DE CONFIGURAÇÃO {{{
+
+" Mapleader: configura a tecla <leader>.
+let mapleader = ","
+let g:mapleader = ","
+
+" TOHTML
+" let g:html_use_css=0
+let g:html_number_lines = 0
+
+" NERDTree
+" let g:NERDTreeDirArrows=0          " Não exibir setas
+
+" Syntastic
+let g:syntastic_enable_perl_checker = 1
+
+" Abrir URL sob o cursor
+"let g:netrw_browsex_viewer = 'firefox'
+
+" Vim-airline
+
+if !has('g:airline_section_b')
+    " let g:airline_section_b = '%<%{getcwd()}'
+endif
+
+" let g:airline_mode_map = {
+"     \ '__' : '-',
+"     \ 'n'  : 'N',
+"     \ 'i'  : 'I',
+"     \ 'R'  : 'R',
+"     \ 'c'  : 'C',
+"     \ 'v'  : 'V',
+"     \ 'V'  : 'V-L',
+"     \ '' : 'V-B',
+"     \ 's'  : 'S',
+"     \ 'S'  : 'S',
+"     \ '' : 'S',
+"     \ }
+let g:airline#extensions#branch#empty_message = '*'
+
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_spac = 1
+
+" Supertab
+" Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
+inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
+inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
+inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+
+let g:SuperTabCrMapping = 0
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<c-n>'
+
+" vim-rooter
+let g:rooter_change_directory_for_non_project_files = 1
+
+" CtrlP
+" if mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'find %s -type f'
+    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" elseif mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
+" endif
+
+" IndentLine - ver acima: GUI
+" let g:indentLine_char='│'
+
+" xptemplate
+" set runtimepath+=~/vim_local/xpt-personal/
+
+" }}}
+
+
 " DEFINIÇÕES {{{
 
 " nnoremap ,, ,
@@ -200,8 +277,8 @@ match ExtraWhitespace /\s\+$/
 " MAPEAMENTOS {{{
 
 " Inserir linhas e continuar em modo normal
-noremap <leader>o o<ESC>:echo<CR>
-noremap <leader>O O<ESC>:echo<CR>
+nnoremap <leader>o o<ESC>:echo<CR>
+nnoremap <leader>O O<ESC>:echo<CR>
 
 " Isto é para a lista de tags
 noremap <F4> :Tagbar<CR>
@@ -328,6 +405,8 @@ augroup end
 
 " Outros tipos
 augroup ft_misc
+    autocmd!
+
     " Arquivos tt2: tratar como html
     autocmd BufNewFile,BufRead *.tt2 set ft=html
 
@@ -361,6 +440,8 @@ augroup cursor_line
 augroup END
 
 augroup etc_group
+    autocmd!
+
     " Cada arquivo em uma nova aba - causa alguns erros
     "autocmd BufAdd,BufNewFile * nested tab sball
 
@@ -422,81 +503,5 @@ autocmd BufNewFile,BufRead *.tt set ft=html
 
 " }}}
 
-
-" VARIÁVEIS DE CONFIGURAÇÃO {{{
-
-" Mapleader: configura a tecla <leader>.
-let mapleader = ","
-let g:mapleader = ","
-
-" TOHTML
-" let g:html_use_css=0
-let g:html_number_lines = 0
-
-" NERDTree
-" let g:NERDTreeDirArrows=0          " Não exibir setas
-
-" Syntastic
-let g:syntastic_enable_perl_checker = 1
-
-" Abrir URL sob o cursor
-"let g:netrw_browsex_viewer = 'firefox'
-
-" Vim-airline
-
-if !has('g:airline_section_b')
-    " let g:airline_section_b = '%<%{getcwd()}'
-endif
-
-" let g:airline_mode_map = {
-"     \ '__' : '-',
-"     \ 'n'  : 'N',
-"     \ 'i'  : 'I',
-"     \ 'R'  : 'R',
-"     \ 'c'  : 'C',
-"     \ 'v'  : 'V',
-"     \ 'V'  : 'V-L',
-"     \ '' : 'V-B',
-"     \ 's'  : 'S',
-"     \ 'S'  : 'S',
-"     \ '' : 'S',
-"     \ }
-let g:airline#extensions#branch#empty_message = '*'
-
-" delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_spac = 1
-
-" Supertab
-" Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
-inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
-inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
-
-let g:SuperTabCrMapping = 0
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-n>'
-
-" vim-rooter
-let g:rooter_change_directory_for_non_project_files = 1
-
-" CtrlP
-" if mysys ==? 'linux'
-    " let g:ctrlp_user_command = 'find %s -type f'
-    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" elseif mysys ==? 'linux'
-    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
-" endif
-
-" IndentLine - ver acima: GUI
-" let g:indentLine_char='│'
-
-" xptemplate
-" set runtimepath+=~/vim_local/xpt-personal/
-
-" }}}
 
 " vim:fdm=marker
