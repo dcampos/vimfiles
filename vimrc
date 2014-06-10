@@ -31,7 +31,6 @@ Plugin 'gmarik/vundle'
 
 " Keep Plugin commands between here and filetype plugin indent on.
 " scripts on GitHub repos
-"Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
