@@ -98,12 +98,8 @@ filetype plugin indent on     " required
 
 " DEFINIÇÕES {{{
 
-" Mapleader: configura a tecla <leader>.
-let mapleader = ","
-let g:mapleader = ","
-
-nnoremap ,, ,
-vnoremap ,, ,
+" nnoremap ,, ,
+" vnoremap ,, ,
 
 " Nenhum aviso visual
 set visualbell
@@ -113,6 +109,9 @@ set noerrorbells
 " Números de linhas
 set number
 set linebreak
+
+" TESTE
+set lazyredraw
 
 " Correção ortográfica
 set spelllang=pt
@@ -303,66 +302,80 @@ iabbrev enquatno enquanto
 " endif
 
 " Use o compilador do Perl para todos os arquivos com extensão *.pl e *.pm
-autocmd BufNewFile,BufRead *.p{l,m} compiler perl
+augroup ft_perl
+    auto!
+    autocmd BufNewFile,BufRead *.p{l,m} compiler perl
+augroup end
 
 " Python
 " Use o compilador Python para todos os arquivos com extensão *.py
-autocmd BufNewFile,BufRead *.py compiler python
+augroup ft_python
+    auto!
+    autocmd BufNewFile,BufRead *.py compiler python
+augroup end
 
 " Java
 " autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
 
 " Ruby
-" Compilador
-autocmd BufNewFile,BufRead *.rb compiler ruby
-" Recuo de texto
-autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 shiftwidth=2
+augroup ft_ruby
+    autocmd!
+    " Compilador
+    autocmd BufNewFile,BufRead *.rb compiler ruby
+    " Recuo de texto
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 shiftwidth=2
+augroup end
 
-" Arquivos tt2: tratar como html
-au BufNewFile,BufRead *.tt2 set ft=html
+" Outros tipos
+augroup ft_misc
+    " Arquivos tt2: tratar como html
+    autocmd BufNewFile,BufRead *.tt2 set ft=html
 
-" Arquivos lpr: tratar como pascal
-au BufNewFile,BufRead *.lpr set ft=pascal
+    " Arquivos lpr: tratar como pascal
+    autocmd BufNewFile,BufRead *.lpr set ft=pascal
 
-" Arquivos md: tratar como markdown
-au BufNewFile,BufRead *.md set ft=markdown
+    " Arquivos md: tratar como markdown
+    autocmd BufNewFile,BufRead *.md set ft=markdown
 
-" Arquivos do ProGuard
-" au BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
-
-" Muda para o diretório do arquivo atual
-" autocmd BufEnter * lcd %:p:h
-autocmd BufEnter * Rooter
+    " Arquivos do ProGuard
+    " autocmd BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
+augroup end
 
 " Inserir modelo quando iniciar novo arquivo
 augroup templates
-    au!
+    autocmd!
     " read in template files
     autocmd BufNewFile *.* silent! execute '0r ' . s:vim_folder . 'templates/template.'.expand("<afile>:e")
 
     " parse special text in the templates after the read
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+augroup end
+
+"autocmd BufRead,BufNewFile *.txt set spell
+augroup cursor_line
+    autocmd!
+
+    " Only highlight cursor line in active buffer window
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
 augroup END
 
-" Cada arquivo em uma nova aba - causa alguns erros
-"au BufAdd,BufNewFile * nested tab sball
+augroup etc_group
+    " Cada arquivo em uma nova aba - causa alguns erros
+    "autocmd BufAdd,BufNewFile * nested tab sball
 
-" Omnicomplete
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-                \   if &omnifunc == "" |
-                \       setlocal omnifunc=syntaxcomplete#Complete |
-                \   endif
-endif
+    " Omnicomplete
+    if has("autocmd") && exists("+omnifunc")
+        autocmd Filetype *
+                    \   if &omnifunc == "" |
+                    \       setlocal omnifunc=syntaxcomplete#Complete |
+                    \   endif
+    endif
 
-"au BufRead,BufNewFile *.txt set spell
-"augroup CursorLine
-"  autocmd!
-
-" Only highlight cursor line in active buffer window
-"  autocmd WinLeave * set nocursorline
-"  autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
-"augroup END
+    " Muda para o diretório do arquivo atual
+    " autocmd BufEnter * lcd %:p:h
+    autocmd BufEnter * Rooter
+augroup end
 
 " }}}
 
@@ -412,15 +425,19 @@ autocmd BufNewFile,BufRead *.tt set ft=html
 
 " VARIÁVEIS DE CONFIGURAÇÃO {{{
 
+" Mapleader: configura a tecla <leader>.
+let mapleader = ","
+let g:mapleader = ","
+
 " TOHTML
 " let g:html_use_css=0
-let g:html_number_lines=0
+let g:html_number_lines = 0
 
 " NERDTree
 " let g:NERDTreeDirArrows=0          " Não exibir setas
 
 " Syntastic
-let g:syntastic_enable_perl_checker=1
+let g:syntastic_enable_perl_checker = 1
 
 " Abrir URL sob o cursor
 "let g:netrw_browsex_viewer = 'firefox'
@@ -465,6 +482,14 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>'
 
 " vim-rooter
 let g:rooter_change_directory_for_non_project_files = 1
+
+" CtrlP
+" if mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'find %s -type f'
+    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" elseif mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
+" endif
 
 " IndentLine - ver acima: GUI
 " let g:indentLine_char='│'
