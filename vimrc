@@ -1,6 +1,20 @@
 " Maintainer: Darlan P. de Campos <darlanpedro (a) gmail com>
 " License: Public Domain
 
+" INÍCIO {{{
+
+" Pasta do Vim
+let s:vim_folder = g:home_prefix . "vim_local/"
+
+exec "set rtp=" . s:vim_folder . ",$VIMRUNTIME"
+exec "set rtp+=" . s:vim_folder . "bundle/vundle/"
+
+runtime plugin/functions.vim
+
+let g:mysys = MySys()
+
+" }}}
+
 
 " VUNDLE {{{
 
@@ -10,18 +24,18 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 
-call vundle#rc(g:home_prefix . "/vim_local/bundle/")
+call vundle#rc(s:vim_folder . "bundle/")
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
 " Keep Plugin commands between here and filetype plugin indent on.
 " scripts on GitHub repos
-"Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -33,13 +47,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'bling/vim-airline'
-Plugin 'itchyny/lightline.vim'
+Plugin 'bling/vim-airline'
+" Plugin 'itchyny/lightline.vim'
 " Plugin 'chriskempson/base16-vim'
 Plugin 'mileszs/ack.vim'
 
 " Requisito: Python
-if MySys() == "linux"
+if g:mysys == "linux"
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
 endif
@@ -82,14 +96,87 @@ filetype plugin indent on     " required
 " END VUNDLE }}}
 
 
-" DEFINIÇÕES {{{
+" VARIÁVEIS DE CONFIGURAÇÃO {{{
 
 " Mapleader: configura a tecla <leader>.
 let mapleader = ","
 let g:mapleader = ","
 
-nnoremap ,, ,
-vnoremap ,, ,
+" TOHTML
+" let g:html_use_css=0
+let g:html_number_lines = 0
+
+" NERDTree
+" let g:NERDTreeDirArrows=0          " Não exibir setas
+
+" Syntastic
+let g:syntastic_enable_perl_checker = 1
+
+" Abrir URL sob o cursor
+"let g:netrw_browsex_viewer = 'firefox'
+
+" Vim-airline
+
+if !has('g:airline_section_b')
+    " let g:airline_section_b = '%<%{getcwd()}'
+endif
+
+" let g:airline_mode_map = {
+"     \ '__' : '-',
+"     \ 'n'  : 'N',
+"     \ 'i'  : 'I',
+"     \ 'R'  : 'R',
+"     \ 'c'  : 'C',
+"     \ 'v'  : 'V',
+"     \ 'V'  : 'V-L',
+"     \ '' : 'V-B',
+"     \ 's'  : 'S',
+"     \ 'S'  : 'S',
+"     \ '' : 'S',
+"     \ }
+let g:airline#extensions#branch#empty_message = '*'
+
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_spac = 1
+
+" Supertab
+" Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
+inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
+inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
+inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+
+let g:SuperTabCrMapping = 0
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<c-n>'
+
+" vim-rooter
+let g:rooter_change_directory_for_non_project_files = 1
+
+" CtrlP
+" if mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'find %s -type f'
+    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" elseif mysys ==? 'linux'
+    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
+" endif
+
+" IndentLine - ver acima: GUI
+" let g:indentLine_char='│'
+
+" xptemplate
+" set runtimepath+=~/vim_local/xpt-personal/
+
+" }}}
+
+
+" DEFINIÇÕES {{{
+
+" nnoremap ,, ,
+" vnoremap ,, ,
 
 " Nenhum aviso visual
 set visualbell
@@ -99,6 +186,9 @@ set noerrorbells
 " Números de linhas
 set number
 set linebreak
+
+" TESTE
+set lazyredraw
 
 " Correção ortográfica
 set spelllang=pt
@@ -187,8 +277,8 @@ match ExtraWhitespace /\s\+$/
 " MAPEAMENTOS {{{
 
 " Inserir linhas e continuar em modo normal
-noremap <leader>o o<ESC>:echo<CR>
-noremap <leader>O O<ESC>:echo<CR>
+nnoremap <leader>o o<ESC>:echo<CR>
+nnoremap <leader>O O<ESC>:echo<CR>
 
 " Isto é para a lista de tags
 noremap <F4> :Tagbar<CR>
@@ -289,66 +379,84 @@ iabbrev enquatno enquanto
 " endif
 
 " Use o compilador do Perl para todos os arquivos com extensão *.pl e *.pm
-autocmd BufNewFile,BufRead *.p{l,m} compiler perl
+augroup ft_perl
+    auto!
+    autocmd BufNewFile,BufRead *.p{l,m} compiler perl
+augroup end
 
 " Python
 " Use o compilador Python para todos os arquivos com extensão *.py
-autocmd BufNewFile,BufRead *.py compiler python
+augroup ft_python
+    auto!
+    autocmd BufNewFile,BufRead *.py compiler python
+augroup end
 
 " Java
 " autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
 
 " Ruby
-" Compilador
-autocmd BufNewFile,BufRead *.rb compiler ruby
-" Recuo de texto
-autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 shiftwidth=2
+augroup ft_ruby
+    autocmd!
+    " Compilador
+    autocmd BufNewFile,BufRead *.rb compiler ruby
+    " Recuo de texto
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 shiftwidth=2
+augroup end
 
-" Arquivos tt2: tratar como html
-au BufNewFile,BufRead *.tt2 set ft=html
+" Outros tipos
+augroup ft_misc
+    autocmd!
 
-" Arquivos lpr: tratar como pascal
-au BufNewFile,BufRead *.lpr set ft=pascal
+    " Arquivos tt2: tratar como html
+    autocmd BufNewFile,BufRead *.tt2 set ft=html
 
-" Arquivos md: tratar como markdown
-au BufNewFile,BufRead *.md set ft=markdown
+    " Arquivos lpr: tratar como pascal
+    autocmd BufNewFile,BufRead *.lpr set ft=pascal
 
-" Arquivos do ProGuard
-" au BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
+    " Arquivos md: tratar como markdown
+    autocmd BufNewFile,BufRead *.md set ft=markdown
 
-" Muda para o diretório do arquivo atual
-" autocmd BufEnter * lcd %:p:h
-autocmd BufEnter * Rooter
+    " Arquivos do ProGuard
+    " autocmd BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
+augroup end
 
 " Inserir modelo quando iniciar novo arquivo
 augroup templates
-    au!
+    autocmd!
     " read in template files
-    autocmd BufNewFile *.* silent! execute '0r ~/vim_local/templates/template.'.expand("<afile>:e")
+    autocmd BufNewFile *.* silent! execute '0r ' . s:vim_folder . 'templates/template.'.expand("<afile>:e")
 
     " parse special text in the templates after the read
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+augroup end
+
+"autocmd BufRead,BufNewFile *.txt set spell
+augroup cursor_line
+    autocmd!
+
+    " Only highlight cursor line in active buffer window
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
 augroup END
 
-" Cada arquivo em uma nova aba - causa alguns erros
-"au BufAdd,BufNewFile * nested tab sball
+augroup etc_group
+    autocmd!
 
-" Omnicomplete
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-                \   if &omnifunc == "" |
-                \       setlocal omnifunc=syntaxcomplete#Complete |
-                \   endif
-endif
+    " Cada arquivo em uma nova aba - causa alguns erros
+    "autocmd BufAdd,BufNewFile * nested tab sball
 
-"au BufRead,BufNewFile *.txt set spell
-"augroup CursorLine
-"  autocmd!
+    " Omnicomplete
+    if has("autocmd") && exists("+omnifunc")
+        autocmd Filetype *
+                    \   if &omnifunc == "" |
+                    \       setlocal omnifunc=syntaxcomplete#Complete |
+                    \   endif
+    endif
 
-" Only highlight cursor line in active buffer window
-"  autocmd WinLeave * set nocursorline
-"  autocmd WinEnter * if &filetype == 'qf' | set nocursorline | else | set cursorline | endif
-"augroup END
+    " Muda para o diretório do arquivo atual
+    " autocmd BufEnter * lcd %:p:h
+    autocmd BufEnter * Rooter
+augroup end
 
 " }}}
 
@@ -366,12 +474,12 @@ if has("gui_running")
     nmap <c-s> :w<CR>
     imap <c-s> <Esc>:w<CR>a
 
-    if MySys() == "windows"
+    if g:mysys == "win"
         set bg=light
         colors rootwater
         set guifont=Dejavu\ Sans\ mono
         " set guifont=Consolas\ 11
-    elseif MySys() == "linux"
+    elseif g:mysys == "linux"
         set bg=dark
         " colors nazca
         colors aldmeris
@@ -395,69 +503,5 @@ autocmd BufNewFile,BufRead *.tt set ft=html
 
 " }}}
 
-
-" VARIÁVEIS DE CONFIGURAÇÃO {{{
-
-" TOHTML
-" let g:html_use_css=0
-let g:html_number_lines=0
-
-" NERDTree
-" let g:NERDTreeDirArrows=0          " Não exibir setas
-
-" Syntastic
-let g:syntastic_enable_perl_checker=1
-
-" Abrir URL sob o cursor
-"let g:netrw_browsex_viewer = 'firefox'
-
-" Vim-airline
-
-if !has('g:airline_section_b')
-    let g:airline_section_b = '%<%{getcwd()}'
-endif
-
-" let g:airline_mode_map = {
-"     \ '__' : '-',
-"     \ 'n'  : 'N',
-"     \ 'i'  : 'I',
-"     \ 'R'  : 'R',
-"     \ 'c'  : 'C',
-"     \ 'v'  : 'V',
-"     \ 'V'  : 'V-L',
-"     \ '' : 'V-B',
-"     \ 's'  : 'S',
-"     \ 'S'  : 'S',
-"     \ '' : 'S',
-"     \ }
-let g:airline#extensions#branch#empty_message = '*'
-
-" delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_spac = 1
-
-" Supertab
-" Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
-inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
-inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
-
-let g:SuperTabCrMapping = 0
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-n>'
-
-" vim-rooter
-let g:rooter_change_directory_for_non_project_files = 1
-
-" IndentLine - ver acima: GUI
-" let g:indentLine_char='│'
-
-" xptemplate
-" set runtimepath+=~/vim_local/xpt-personal/
-
-" }}}
 
 " vim:fdm=marker
