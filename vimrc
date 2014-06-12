@@ -220,12 +220,14 @@ set incsearch
 set background=dark
 
 " Deixa a rolagem lenta
-"set cursorline
+set cursorline
 
 " Habilita o suporte a sintaxe
 syntax on
 
 filetype plugin on
+
+runtime macros/matchit.vim
 
 " Linha de status
 set laststatus=2
@@ -360,7 +362,7 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 
 " Evitar erros ao salvar/sair
-cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
+cab W w | cab Q q | cab Wq wq | cab wQ wq | cab WQ wq
 
 iabbrev enquatno enquanto
 
