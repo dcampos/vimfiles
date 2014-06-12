@@ -4,7 +4,11 @@ echo "=== Cloning Vundle..."
 
 git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle
 
+echo "=== Creating symlink (Linux)..."
+
 [ $? != 0 ] && echo "Could not clone Vundle. Aborting..." && exit
+
+ln -s $(pwd)/vimrc-linux ~/.vimrc
 
 echo "=== Installing plugins..."
 
