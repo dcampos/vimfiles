@@ -288,6 +288,14 @@ nnoremap <leader>w :w<CR>
 " Source File
 nnoremap <leader>sf :source %<CR>
 
+" vim-fugitive
+nnoremap <leader>gc :Gcommit -a<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gu :Git pull -u<CR>
+nnoremap <leader>gl :Glog<CR>
+
 " Alternar lista de tags
 noremap <F4> :Tagbar<CR>
 
