@@ -282,10 +282,16 @@ match ExtraWhitespace /\s\+$/
 nnoremap <leader>o o<ESC>:echo<CR>
 nnoremap <leader>O O<ESC>:echo<CR>
 
-" Isto é para a lista de tags
+" Salvar arquivo
+nnoremap <leader>w :w<CR>
+
+" Source File
+nnoremap <leader>sf :source %<CR>
+
+" Alternar lista de tags
 noremap <F4> :Tagbar<CR>
 
-" NERDTree
+" Alternar NERDTree
 noremap <F2> :NERDTreeToggle<CR>
 
 " Ctrl+espaço mapeado para omnicompletion
