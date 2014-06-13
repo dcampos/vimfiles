@@ -111,6 +111,7 @@ let g:html_number_lines = 0
 
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers=['perl', 'podchecker']
 
 " Abrir URL sob o cursor
 "let g:netrw_browsex_viewer = 'firefox'
