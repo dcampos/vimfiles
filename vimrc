@@ -47,8 +47,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'bling/vim-airline'
-" Plugin 'itchyny/lightline.vim'
+" Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 " Plugin 'chriskempson/base16-vim'
 Plugin 'mileszs/ack.vim'
 
@@ -112,6 +112,7 @@ let g:html_number_lines = 0
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
+let g:syntastic_enable_balloons = 1
 
 " Abrir URL sob o cursor
 "let g:netrw_browsex_viewer = 'firefox'
@@ -136,6 +137,25 @@ endif
 "     \ '' : 'S',
 "     \ }
 let g:airline#extensions#branch#empty_message = '*'
+
+" lightline.vim
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive'
+      \ },
+  \ }
+
+function! MyFugitive()
+  if exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? '⎇  ' . _ : ''
+  endif
+  return ''
+endfunction
 
 " delimitMate
 let delimitMate_expand_cr = 1
