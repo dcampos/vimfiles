@@ -114,8 +114,7 @@ let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
 let g:syntastic_enable_balloons = 1
 
-" Abrir URL sob o cursor
-"let g:netrw_browsex_viewer = 'firefox'
+let g:syntastic_java_javac_custom_classpath_command = 'echo "./src:./lib:$(cat classpath.txt)"'
 
 " Vim-airline
 
@@ -291,7 +290,7 @@ endif
 
 " Necessário para exibir corretamente todos os caracteres
 set encoding=utf8
-    
+
 " }}}
 
 
@@ -378,7 +377,7 @@ nnoremap <F9> :SCCompile<cr>
 nnoremap <F10> :SCCompileRun<cr>
 
 " Abrir links da web/pesquisar palavras
-" let g:netrw_nogx = 1 " disable netrw's gx mapping.
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
 
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
