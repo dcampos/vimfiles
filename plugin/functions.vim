@@ -27,7 +27,7 @@ function! HighlightWhitespace()
 endfunction
 
 " Remove trailing spaces
-" luciano-fiandesio/dotfiles
+" Source: luciano-fiandesio/dotfiles
 function! RemoveWhitespace()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
