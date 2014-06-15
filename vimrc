@@ -288,17 +288,13 @@ endif
 
 " Necessário para exibir corretamente todos os caracteres
 set encoding=utf8
-
-" Exibir espaços desnecessários
-highlight link ExtraWhitespace Error
-match ExtraWhitespace /\s\+$/
-
-
+    
 " }}}
 
 
 " MAPEAMENTOS {{{
 
+" Leader {{{
 " Inserir linhas e continuar em modo normal
 nnoremap <leader>o o<ESC>:echo<CR>
 nnoremap <leader>O O<ESC>:echo<CR>
@@ -316,6 +312,12 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gu :Git pull -u<CR>
 nnoremap <leader>gl :Glog<CR>
+
+" Espaços em branco
+nmap <Leader>hw <Plug>(toggle-highlight-whitespace)
+nmap <Leader>rw <Plug>(trim-whitespace)
+
+" }}}
 
 " Alternar lista de tags
 noremap <F4> :Tagbar<CR>
@@ -493,6 +495,9 @@ augroup etc_group
     " Muda para o diretório do arquivo atual
     " autocmd BufEnter * lcd %:p:h
     autocmd BufEnter * Rooter
+
+    " Destacar espaços em branco
+    autocmd BufEnter * silent! :call HighlightWhitespace()
 augroup end
 
 " }}}
