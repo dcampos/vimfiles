@@ -315,7 +315,7 @@ nnoremap <leader>gl :Glog<CR>
 
 " Espaços em branco
 nmap <Leader>hw <Plug>(toggle-highlight-whitespace)
-nmap <Leader>rw <Plug>(trim-whitespace)
+nmap <Leader>rw <Plug>(remove-whitespace)
 
 " }}}
 

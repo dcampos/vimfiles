@@ -27,13 +27,18 @@ function! HighlightWhitespace()
 endfunction
 
 " Remove trailing spaces
-function! TrimWhitespace()
+" luciano-fiandesio/dotfiles
+function! RemoveWhitespace()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
     %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
     echo 'White space removed'
 endfunction
 
 let g:ws_highlighting = 0
 
 nnoremap <Plug>(toggle-highlight-whitespace) :call HighlightWhitespace()<CR>
-nnoremap <Plug>(trim-whitespace) :call TrimWhitespace()<CR>
+nnoremap <Plug>(remove-whitespace) :call RemoveWhitespace()<CR>
 
