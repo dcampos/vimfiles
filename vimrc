@@ -240,8 +240,11 @@ set incsearch
 " Interface
 set background=dark
 
-" Deixa a rolagem lenta
+" Deixa a rolagem lenta?
 set cursorline
+
+" Reduz lentidão em linhas longas
+set synmaxcol=128
 
 " Habilita o suporte a sintaxe
 syntax on
