@@ -34,21 +34,12 @@ endfunction
 
 function! EnableWhiteSpace()
     highlight link ExtraWhitespace Error
-    match ExtraWhitespace /\s\+$/ 
+    match ExtraWhitespace /\s\+$/
     let b:ws_highlighting = 1
 endfunction
 
-" Remove trailing space
-" Source: luciano-fiandesio/dotfiles
-function! RemoveWhitespace()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-    echo 'White space removed'
-endfunction
-
 nnoremap <Plug>(toggle-highlight-whitespace) :call HighlightWhitespace()<CR>
-nnoremap <Plug>(remove-whitespace) :call RemoveWhitespace()<CR>
+
+command! -range=% RemoveWhitespace silent! <line1>,<line2>s/\s\+$//e | normal! `
+command! ToggleWhitespace :call HighlightWhitespace()
 
