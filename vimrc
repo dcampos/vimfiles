@@ -499,7 +499,8 @@ augroup etc_group
     autocmd BufEnter * Rooter
 
     " Destacar espaços em branco
-    autocmd BufEnter * silent! :call HighlightWhitespace()
+    autocmd BufEnter,InsertLeave * silent! :call EnableWhiteSpace()
+    autocmd InsertEnter * silent! :call DisableWhiteSpace()
 augroup end
 
 " }}}

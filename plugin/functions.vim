@@ -5,7 +5,7 @@ function! MySys()
         return "win"
     endif
     if has("unix")
-        if system('uname')=~'Darwin'
+        if system('uname') =~ 'Darwin'
             return "mac"
         else
             return "linux"
@@ -15,18 +15,30 @@ endfunction
 
 " Toggle trailing white space highlighting
 function! HighlightWhitespace()
-    if g:ws_highlighting
-        highlight link ExtraWhitespace NONE
-        let g:ws_highlighting = 0
+    if !exists('b:ws_highlighting')
+        let b:ws_highlighting = 0
+    end
+
+    if b:ws_highlighting
+        call DisableWhiteSpace()
     else
-        highlight link ExtraWhitespace Error
-        match ExtraWhitespace /\s\+$/ 
-        let g:ws_highlighting = 1
+        call EnableWhiteSpace()
     endif
     echo 'White space highlighting toggled'
 endfunction
 
-" Remove trailing spaces
+function! DisableWhiteSpace()
+    highlight link ExtraWhitespace NONE
+    let b:ws_highlighting = 0
+endfunction
+
+function! EnableWhiteSpace()
+    highlight link ExtraWhitespace Error
+    match ExtraWhitespace /\s\+$/ 
+    let b:ws_highlighting = 1
+endfunction
+
+" Remove trailing space
 " Source: luciano-fiandesio/dotfiles
 function! RemoveWhitespace()
     let save_cursor = getpos(".")
@@ -36,8 +48,6 @@ function! RemoveWhitespace()
     call setreg('/', old_query)
     echo 'White space removed'
 endfunction
-
-let g:ws_highlighting = 0
 
 nnoremap <Plug>(toggle-highlight-whitespace) :call HighlightWhitespace()<CR>
 nnoremap <Plug>(remove-whitespace) :call RemoveWhitespace()<CR>
