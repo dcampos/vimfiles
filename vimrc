@@ -254,7 +254,7 @@ runtime macros/matchit.vim
 set laststatus=2
 set statusline=
 set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " filename
+set statusline+=%1*%f\                          " filename
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\ %{getcwd()}                " current directory
@@ -375,9 +375,9 @@ nnoremap <F10> :SCCompileRun<cr>
 " Abrir links da web/pesquisar palavras
 " let g:netrw_nogx = 1 " disable netrw's gx mapping.
 
-" nnoremap gx <Plug>(openbrowser-smart-search)
-" vnoremap gx <Plug>(openbrowser-smart-search)
-let g:netrw_browsex_viewer='firefox'
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+" let g:netrw_browsex_viewer='firefox'
 
 " Navegação por linhas visuais
 
