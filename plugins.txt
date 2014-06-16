@@ -11,8 +11,8 @@ Plugins para testar:
 [ ] sparkup
 [ ] emmet-vim
 [+] vim-dispatch
-[ ] 
-[ ] 
+[ ] Chiel92/vim-autoformat
+[ ] vim-better-whitespace
 [ ] 
 [ ] 
 [ ] 
