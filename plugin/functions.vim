@@ -17,7 +17,7 @@ endfunction
 function! s:ToggleWhitespace()
     if !exists('b:ws_highlighting')
         let b:ws_highlighting = 0
-    end
+    end 
 
     if b:ws_highlighting
         call DisableWhiteSpace()
@@ -38,7 +38,7 @@ function! s:EnableWhitespace()
 endfunction
 
 command! -range=% RemoveWhitespace silent! :<line1>,<line2>s/\s\+$//e | normal! ``
-command! ToggleWhitespace  :call <SID>HighlightWhitespace()
+command! ToggleWhitespace  :call <SID>ToggleWhitespace()
 command! EnableWhitespace  :call <SID>EnableWhitespace()
 command! DisableWhitespace :call <SID>DisableWhitespace()
 
