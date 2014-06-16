@@ -14,7 +14,7 @@ function! MySys()
 endfunction
 
 " Toggle trailing white space highlighting
-function! HighlightWhitespace()
+function! s:ToggleWhitespace()
     if !exists('b:ws_highlighting')
         let b:ws_highlighting = 0
     end
@@ -24,22 +24,21 @@ function! HighlightWhitespace()
     else
         call EnableWhiteSpace()
     endif
-    echo 'White space highlighting toggled'
 endfunction
 
-function! DisableWhiteSpace()
+function! s:DisableWhitespace()
     highlight link ExtraWhitespace NONE
     let b:ws_highlighting = 0
 endfunction
 
-function! EnableWhiteSpace()
+function! s:EnableWhitespace()
     highlight link ExtraWhitespace Error
     match ExtraWhitespace /\s\+$/
     let b:ws_highlighting = 1
 endfunction
 
-nnoremap <Plug>(toggle-highlight-whitespace) :call HighlightWhitespace()<CR>
-
-command! -range=% RemoveWhitespace silent! <line1>,<line2>s/\s\+$//e | normal! `
-command! ToggleWhitespace :call HighlightWhitespace()
+command! -range=% RemoveWhitespace silent! :<line1>,<line2>s/\s\+$//e | normal! ``
+command! ToggleWhitespace  :call <SID>HighlightWhitespace()
+command! EnableWhitespace  :call <SID>EnableWhitespace()
+command! DisableWhitespace :call <SID>DisableWhitespace()
 

@@ -298,26 +298,26 @@ set encoding=utf8
 
 " Leader {{{
 " Inserir linhas e continuar em modo normal
-nnoremap <leader>o o<ESC>:echo<CR>
-nnoremap <leader>O O<ESC>:echo<CR>
+nnoremap <Leader>o o<ESC>:echo<CR>
+nnoremap <Leader>O O<ESC>:echo<CR>
 
 " Salvar arquivo
-nnoremap <leader>w :w<CR>
+nnoremap <Leader>w :w<CR>
 
 " Source File
-nnoremap <leader>sf :source %<CR>
+nnoremap <Leader>sf :source %<CR>
 
 " vim-fugitive
-nnoremap <leader>gc :Gcommit -a<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gu :Git pull -u<CR>
-nnoremap <leader>gl :Glog<CR>
+nnoremap <Leader>gc :Gcommit -a<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gp :Git push<CR>
+nnoremap <Leader>gu :Git pull -u<CR>
+nnoremap <Leader>gl :Glog<CR>
 
 " Espaços em branco
-nmap <Leader>tw :ToggleWhitespace<CR>
-nmap <Leader>rw :RemoveWhitespace<CR>
+nnoremap <Leader>tw :ToggleWhitespace<CR>
+nnoremap <Leader>rw :RemoveWhitespace<CR>
 
 " }}}
 
@@ -332,7 +332,6 @@ inoremap <C-Space> <C-X><C-O>
 
 noremap <F6> :%s/^\t*\s*$//g<CR>
 
-
 " Barra de espaço/backspace mapeados para PageDown/PageUp no modo de comandos
 noremap <Space> 
 noremap <BS> 
@@ -344,7 +343,7 @@ nnoremap <Leader>tc :tabclose<CR>   " Fechar aba
 
 " Janelas
 noremap <C-j> <C-w>j               " Janela abaixo
-noremap <leader>j <C-w>j               " Janela abaixo
+noremap <Leader>j <C-w>j               " Janela abaixo
 noremap <C-k> <C-w>k               " Janela acima
 noremap <C-h> <C-w>h               " Janela à esquerda
 noremap <C-l> <C-w>l               " Janela à direita
@@ -389,7 +388,7 @@ noremap j gj
 noremap k gk
 
 " Correção ortográfica
-noremap <leader>ss :set spell!<cr>
+noremap <Leader>ss :set spell!<cr>
 
 " sudo
 cnoremap w!! %!sudo tee > /dev/null %
@@ -499,8 +498,8 @@ augroup etc_group
     autocmd BufEnter * Rooter
 
     " Destacar espaços em branco
-    autocmd BufEnter,InsertLeave * silent! :call EnableWhiteSpace()
-    autocmd InsertEnter * silent! :call DisableWhiteSpace()
+    autocmd BufEnter,InsertLeave * silent! :EnableWhitespace
+    autocmd InsertEnter * silent! :DisableWhitespace
 augroup end
 
 " }}}
