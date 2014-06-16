@@ -20,9 +20,9 @@ function! s:ToggleWhitespace()
     end
 
     if b:ws_highlighting
-        call DisableWhiteSpace()
+        call <SID>DisableWhitespace()
     else
-        call EnableWhiteSpace()
+        call <SID>EnableWhitespace()
     endif
 endfunction
 
