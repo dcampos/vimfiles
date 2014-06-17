@@ -79,6 +79,7 @@ Plugin 'tomtom/tcomment_vim'
 " Repositórios pessoais/forks
 Plugin 'dcampos/vim-aldmeris'
 Plugin 'dcampos/proguard.vim'
+Plugin 'vim-scripts/javacomplete'
 
 " scripts not on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -115,7 +116,8 @@ let g:syntastic_perl_checkers = ['perl', 'podchecker']
 let g:syntastic_enable_balloons = 1
 
 let g:syntastic_java_javac_custom_classpath_command =
-    \ "echo 'src/:lib/*.jar:'; echo $( [ -e classpath.txt ] && cat classpath.txt )"
+    \ 'echo -n "src/:lib/*";' .
+    \ '[ -e classpath.txt ] && echo -n ":$( cat classpath.txt )"'
 
 " Vim-airline
 
@@ -433,7 +435,10 @@ augroup ft_python
 augroup end
 
 " Java
-" autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
+augroup ft_java
+    auto!
+    autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
+augroup end
 
 " Ruby
 augroup ft_ruby
