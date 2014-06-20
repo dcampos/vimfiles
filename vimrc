@@ -453,8 +453,10 @@ augroup end
 augroup ft_misc
     autocmd!
 
-    " Arquivos tt2: tratar como html
+    " Arquivos tt, tt2: tratar como html
+    autocmd BufNewFile,BufRead *.tt set ft=html
     autocmd BufNewFile,BufRead *.tt2 set ft=html
+
 
     " Arquivos lpr: tratar como pascal
     autocmd BufNewFile,BufRead *.lpr set ft=pascal
@@ -504,7 +506,7 @@ augroup etc_group
     autocmd BufEnter * Rooter
 
     " Destacar espaços em branco
-    autocmd BufEnter,InsertLeave * silent! :EnableWhitespace
+    autocmd BufRead,InsertLeave * silent! :EnableWhitespace
     autocmd InsertEnter * silent! :DisableWhitespace
 augroup end
 
@@ -548,8 +550,6 @@ else
     colors ir_black
     let g:indentLine_char='»'
 endif
-
-autocmd BufNewFile,BufRead *.tt set ft=html
 
 " }}}
 
