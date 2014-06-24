@@ -512,10 +512,7 @@ augroup end
 
 " }}}
 
-
 " GUI {{{
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("gui_running")
     set columns=100 lines=40
@@ -530,13 +527,9 @@ if has("gui_running")
         set bg=light
         colors rootwater
         set guifont=Dejavu\ Sans\ mono
-        " set guifont=Consolas\ 11
     elseif g:mysys == "linux"
         set bg=dark
-        " colors nazca
         colors aldmeris
-        " set guifont=Ubuntu\ mono\ 12
-        " set guifont=Inconsolata\ for\ Powerline\ 12
         set guifont=Fantasque\ sans\ mono\ 12
 
         " Mostrar símbolos especiais somente em Linux/Gvim
