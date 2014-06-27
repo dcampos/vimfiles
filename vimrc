@@ -530,7 +530,7 @@ if has("gui_running")
     elseif g:mysys == "linux"
         set bg=dark
         colors aldmeris
-        set guifont=Fantasque\ sans\ mono\ 11
+        " set guifont=Fantasque\ sans\ mono\ 12
 
         " Mostrar símbolos especiais somente em Linux/Gvim
         let g:airline_powerline_fonts=1
