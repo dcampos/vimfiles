@@ -4,9 +4,9 @@ echo "=== Cloning Vundle..."
 
 git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle
 
-echo "=== Creating symlink (Linux)..."
-
 [ $? != 0 ] && echo "Could not clone Vundle. Aborting..." && exit
+
+echo "=== Creating symlink (Linux)..."
 
 ln -s $(pwd)/vimrc-linux ~/.vimrc
 
