@@ -271,6 +271,8 @@ set statusline+=%<%P                         " file position
 " Menu para completar comandos
 set wildmenu
 
+set wildignorecase
+
 " Usar área de transferência como padrão
 set clipboard=unnamed
 
