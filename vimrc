@@ -323,6 +323,7 @@ nnoremap <Leader>gl :Glog<CR>
 " Espaços em branco
 nnoremap <Leader>tw :ToggleWhitespace<CR>
 nnoremap <Leader>rw :RemoveWhitespace<CR>
+vnoremap <Leader>rw :RemoveWhitespace<CR>
 
 " }}}
 
