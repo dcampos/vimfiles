@@ -49,7 +49,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
-" Plugin 'chriskempson/base16-vim'
 Plugin 'mileszs/ack.vim'
 
 " Requisito: Python
@@ -75,6 +74,9 @@ Plugin 'tomtom/tcomment_vim'
 "Plugin 'tpope/vim-rails.git'
 
 " Plugin 'flazz/vim-colorschemes'
+
+" Tipos de arquivos
+Plugin 'groenewege/vim-less'
 
 " Repositórios pessoais/forks
 Plugin 'dcampos/vim-aldmeris'
