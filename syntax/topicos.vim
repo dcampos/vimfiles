@@ -18,4 +18,4 @@ hi link tarefaConcluida Comment
 syn match url "http[^ ]\+"
 syn match topico1 " *\*.*$"
 syn match titulo "^\[.*\]$"
-syn match tarefaConcluida "^.*OK *$"
+syn match tarefaConcluida "^.* OK *$"
