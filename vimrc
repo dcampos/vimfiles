@@ -469,6 +469,8 @@ augroup ft_misc
     " Arquivos md: tratar como markdown
     autocmd BufNewFile,BufRead *.md set ft=markdown
 
+    autocmd BufWrite topicos.md silent! !gimli % &
+
     " Arquivos do ProGuard
     " autocmd BufNewFile,BufRead proguard.cfg,*.pro,*.proguard set ft=proguard
 augroup end
@@ -510,8 +512,9 @@ augroup etc_group
     " autocmd BufEnter * lcd %:p:h
     autocmd BufEnter * Rooter
 
+        
     " Destacar espaços em branco
-    autocmd BufRead,InsertLeave * silent! :EnableWhitespace
+    autocmd BufRead,InsertLeave,InsertEnter * silent! :EnableWhitespace 
     autocmd InsertEnter * silent! :DisableWhitespace
 augroup end
 
