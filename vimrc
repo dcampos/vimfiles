@@ -327,6 +327,9 @@ nnoremap <Leader>tw :ToggleWhitespace<CR>
 nnoremap <Leader>rw :RemoveWhitespace<CR>
 vnoremap <Leader>rw :RemoveWhitespace<CR>
 
+" Renomear arquivo
+nnoremap <Leader>mv :RenameFile<CR>
+
 " }}}
 
 " Alternar lista de tags
@@ -512,9 +515,9 @@ augroup etc_group
     " autocmd BufEnter * lcd %:p:h
     autocmd BufEnter * Rooter
 
-        
+
     " Destacar espaços em branco
-    autocmd BufRead,InsertLeave,InsertEnter * silent! :EnableWhitespace 
+    autocmd BufRead,InsertLeave,InsertEnter * silent! :EnableWhitespace
     autocmd InsertEnter * silent! :DisableWhitespace
 augroup end
 

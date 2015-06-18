@@ -37,9 +37,21 @@ function! s:EnableWhitespace()
     let b:ws_highlighting = 1
 endfunction
 
+" http://stackoverflow.com/q/1205286/
+function! s:RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+
 command! -range=% RemoveWhitespace silent! :<line1>,<line2>s/\s\+$//e | normal! ``
 command! ToggleWhitespace  :call <SID>ToggleWhitespace()
 command! AutoToggleWS  :call <SID>AutoToggleWS()
 command! EnableWhitespace  :call <SID>EnableWhitespace()
 command! DisableWhitespace :call <SID>DisableWhitespace()
+command! RenameFile :call <SID>RenameFile()
 
