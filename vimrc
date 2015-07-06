@@ -65,7 +65,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-rooter'
 
-" Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 " Plugin 'Marslo/EnhCommentify.vim'
 Plugin 'tomtom/tcomment_vim'
@@ -116,10 +116,13 @@ let g:html_number_lines = 0
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
 let g:syntastic_enable_balloons = 1
-
 let g:syntastic_java_javac_custom_classpath_command =
     \ 'echo -n "src/:lib/*";' .
     \ '[ -e classpath.txt ] && echo -n ":$( cat classpath.txt )"'
+let g:syntastic_cpp_checkers = ['gcc']
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+let g:loaded_syntastic_cpp_gcc_check_header = 1
 
 " Vim-airline
 
@@ -180,6 +183,20 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>'
 
 " vim-rooter
 let g:rooter_change_directory_for_non_project_files = 1
+
+" YCM
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " CtrlP
 " if mysys ==? 'linux'
@@ -330,6 +347,10 @@ vnoremap <Leader>rw :RemoveWhitespace<CR>
 " Renomear arquivo
 nnoremap <Leader>mv :RenameFile<CR>
 
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
+nnoremap <Leader>bl :ls<CR>
+
 " }}}
 
 " Alternar lista de tags
@@ -339,7 +360,7 @@ noremap <F4> :Tagbar<CR>
 noremap <F2> :NERDTreeToggle<CR>
 
 " Ctrl+espaço mapeado para omnicompletion
-inoremap <C-Space> <C-X><C-O>
+" inoremap <C-Space> <C-X><C-O>
 
 noremap <F6> :%s/^\t*\s*$//g<CR>
 
