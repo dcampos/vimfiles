@@ -149,10 +149,11 @@ let g:airline#extensions#branch#empty_message = '*'
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'curdir', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'fugitive': 'MyFugitive'
+      \   'fugitive': 'MyFugitive',
+      \   'curdir': 'CurDir',
       \ },
   \ }
 
@@ -162,6 +163,15 @@ function! MyFugitive()
     return strlen(_) ? '' . _ : ''
   endif
   return ''
+endfunction
+
+function! CurDir()
+    let _path = getcwd()
+    if len(_path) < 15
+        return _path
+    else
+        return _path[0:10] . '…' . _path[-10:]
+    endif
 endfunction
 
 " delimitMate
