@@ -65,7 +65,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-rooter'
 
-"Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
 " Plugin 'Marslo/EnhCommentify.vim'
 Plugin 'tomtom/tcomment_vim'
@@ -167,10 +167,11 @@ endfunction
 
 function! CurDir()
     let _path = getcwd()
+    let _spath = split(_path, "/")
     if len(_path) < 15
-        return _path
+        return join(_spath, " > ")
     else
-        return _path[0:10] . '…' . _path[-10:]
+        return _spath[0] . ' > … > ' . _spath[-1]
     endif
 endfunction
 
