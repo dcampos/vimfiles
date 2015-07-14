@@ -65,7 +65,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-rooter'
 
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " Plugin 'Marslo/EnhCommentify.vim'
 Plugin 'tomtom/tcomment_vim'
@@ -183,10 +183,10 @@ let delimitMate_expand_spac = 1
 " Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
-inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
-inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+" inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
+" inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
+" inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
+" inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
 
 let g:SuperTabCrMapping = 0
 let g:SuperTabDefaultCompletionType = 'context'
@@ -197,8 +197,8 @@ let g:rooter_change_directory_for_non_project_files = 1
 
 " YCM
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-n>' , '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>' , '<Up>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_enable_diagnostic_signs = 0
@@ -585,6 +585,10 @@ else
     " colors ron
     colors ir_black
     let g:indentLine_char='»'
+
+    " Resolver problema com <s-tab> no terminal
+    imap <ESc>[Z <s-tab>
+    "ounmap <Esc>[Z
 endif
 
 " }}}
