@@ -2,7 +2,7 @@ snippet try
 try {
 	$1
 } catch(${2:Exception} ${3:e}) {
-	${4:test}
+	$3.printStackTrace();
 }
 $0
 endsnippet
