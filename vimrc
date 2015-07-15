@@ -63,6 +63,7 @@ Plug 'airblade/vim-rooter'
 Plug 'tomtom/tcomment_vim'
 
 " Plugin 'flazz/vim-colorschemes'
+Plug 'noahfrederick/vim-hemisu'
 
 " Tipos de arquivos
 Plug 'groenewege/vim-less'
