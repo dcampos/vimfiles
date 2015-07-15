@@ -1,10 +1,12 @@
 #!/bin/sh
 
-echo "=== Cloning Vundle..."
+echo "=== Installing Plug..."
 
-git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle
+mkdir -p autoload
+wget -O autoload/plug.vim \
+  https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
-[ $? != 0 ] && echo "Could not clone Vundle. Aborting..." && exit
+[ $? != 0 ] && echo "Could not install Plug. Aborting..." && exit
 
 echo "=== Creating symlink (Linux)..."
 

@@ -7,96 +7,74 @@
 let s:vim_folder = g:home_prefix . "vim_local/"
 
 exec "set rtp=" . s:vim_folder . ",$VIMRUNTIME"
-exec "set rtp+=" . s:vim_folder . "bundle/vundle/"
 
 runtime plugin/functions.vim
 
 let g:mysys = MySys()
 
+set nocompatible
+
 " }}}
 
 
-" VUNDLE {{{
-
-set nocompatible
-
-filetype off
+" VIM-PLUG {{{
 
 " set the runtime path to include Vundle and initialize
 
-call vundle#rc(s:vim_folder . "bundle/")
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+call plug#begin(s:vim_folder . "plugged/")
 
 " Keep Plugin commands between here and filetype plugin indent on.
 " scripts on GitHub repos
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 " Plugin 'tpope/vim-commentary'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'vim-perl/vim-perl'
-Plugin 'c9s/perlomni.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tyru/open-browser.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'bling/vim-airline'
-Plugin 'itchyny/lightline.vim'
-Plugin 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'vim-perl/vim-perl'
+Plug 'c9s/perlomni.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'kien/ctrlp.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'majutsushi/tagbar'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
+Plug 'mileszs/ack.vim'
 
 " Requisito: Python
 if g:mysys == "linux"
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'Valloric/YouCompleteMe',
+                \ { 'do': './install.sh --clang-completer --system-libclang'}
 endif
 
 " Plugin 'drmingdrmer/xptemplate'
 " Plugin 'ludovicchabant/vim-lawrencium'
 
 " http://www.lucianofiandesio.com/vim-configuration-for-happy-java-coding
-Plugin 'ervandew/supertab'
-Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-rooter'
-
-Plugin 'Valloric/YouCompleteMe'
+Plug 'ervandew/supertab'
+Plug 'Raimondi/delimitMate'
+Plug 'airblade/vim-rooter'
 
 " Plugin 'Marslo/EnhCommentify.vim'
-Plugin 'tomtom/tcomment_vim'
-
-"Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
-"Plugin 'tpope/vim-rails.git'
+Plug 'tomtom/tcomment_vim'
 
 " Plugin 'flazz/vim-colorschemes'
 
 " Tipos de arquivos
-Plugin 'groenewege/vim-less'
+Plug 'groenewege/vim-less'
 
 " Repositórios pessoais/forks
-Plugin 'dcampos/vim-aldmeris'
-Plugin 'dcampos/proguard.vim'
-Plugin 'vim-scripts/javacomplete'
+Plug 'dcampos/vim-aldmeris'
+Plug 'dcampos/proguard.vim'
+Plug 'vim-scripts/javacomplete'
 
-" scripts not on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" ...
+call plug#end()
 
-" call vundle#end()             " required (?)
-filetype plugin indent on     " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-
-" END VUNDLE }}}
+" END VIM-PLUG }}}
 
 
 " VARIÁVEIS DE CONFIGURAÇÃO {{{
