@@ -5,7 +5,7 @@
  *
  */
 
-public class [:VIM_EVAL:]expand("<afile>:r:s#^.*/##")[:END_EVAL:] {
+public class <+VIM+>expand("<afile>:r:s#^.*/##")<+END_VIM+> {
     public static void main (String[] args) {
         
     }

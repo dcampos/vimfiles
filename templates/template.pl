@@ -2,7 +2,7 @@
 #
 # Descrição: 
 #
-# Uso: ./[:VIM_EVAL:]expand("<afile>:t")[:END_EVAL:]
+# Uso: ./<+VIM+>expand("<afile>:t")<+END_VIM+>
 # 
 # Autor: Darlan P. de Campos
 # Versão: 0.1

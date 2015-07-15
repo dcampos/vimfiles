@@ -1,7 +1,7 @@
 
-class [:VIM_EVAL:]expand("<afile>:r:s#^.*/##")[:END_EVAL:] {
+class <+VIM+>expand("<afile>:r:s#^.*/##")<+END_VIM+> {
 private:
 public:
-    [:VIM_EVAL:]expand("<afile>:r:s#^.*/##")[:END_EVAL:]();
-    ~[:VIM_EVAL:]expand("<afile>:r:s#^.*/##")[:END_EVAL:]();
+    <+VIM+>expand("<afile>:r:s#^.*/##")<+END_VIM+>();
+    ~<+VIM+>expand("<afile>:r:s#^.*/##")<+END_VIM+>();
 };

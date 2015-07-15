@@ -496,7 +496,7 @@ augroup templates
     autocmd BufNewFile *.* silent! execute '0r ' . s:vim_folder . 'templates/template.'.expand("<afile>:e")
 
     " parse special text in the templates after the read
-    autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+    autocmd BufNewFile * %substitute#<+VIM+>\(.\{-\}\)<+END_VIM+>#\=eval(submatch(1))#ge
 augroup end
 
 "autocmd BufRead,BufNewFile *.txt set spell
