@@ -54,6 +54,8 @@ endif
 " Plugin 'drmingdrmer/xptemplate'
 " Plugin 'ludovicchabant/vim-lawrencium'
 
+Plug 'pgilad/vim-skeletons'
+
 " http://www.lucianofiandesio.com/vim-configuration-for-happy-java-coding
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
@@ -200,8 +202,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " IndentLine - ver acima: GUI
 " let g:indentLine_char='│'
 
-" xptemplate
-" set runtimepath+=~/vim_local/xpt-personal/
+let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
 
 " }}}
 
