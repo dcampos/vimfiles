@@ -34,8 +34,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'vim-perl/vim-perl'
-Plug 'c9s/perlomni.vim'
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
+    \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'c9s/perlomni.vim', { 'for': 'perl' }
 Plug 'Yggdroot/indentLine'
 Plug 'kien/ctrlp.vim'
 Plug 'tyru/open-browser.vim'
@@ -68,12 +69,13 @@ Plug 'tomtom/tcomment_vim'
 Plug 'noahfrederick/vim-hemisu'
 
 " Tipos de arquivos
-Plug 'groenewege/vim-less'
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
 " Repositórios pessoais/forks
 Plug 'dcampos/vim-aldmeris'
-Plug 'dcampos/proguard.vim'
-Plug 'vim-scripts/javacomplete'
+
+Plug 'vim-scripts/javacomplete', { 'for': 'java' }
 
 call plug#end()
 
@@ -184,7 +186,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_show_diagnostics_ui = 1
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_extra_conf_globlist = ['~/Dev/*','!~/*']
+let g:ycm_global_ycm_extra_conf = s:vim_folder . '.ycm_extra_conf.py'
+
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
