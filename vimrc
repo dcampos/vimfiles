@@ -193,8 +193,8 @@ let g:ycm_global_ycm_extra_conf = s:vim_folder . '.ycm_extra_conf.py'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 " CtrlP
 " if mysys ==? 'linux'
