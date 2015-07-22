@@ -66,6 +66,7 @@ Plug 'tomtom/tcomment_vim'
 
 " Plugin 'flazz/vim-colorschemes'
 Plug 'noahfrederick/vim-hemisu'
+Plug 'gosukiwi/vim-atom-dark'
 
 " Tipos de arquivos
 Plug 'groenewege/vim-less'
