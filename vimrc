@@ -68,15 +68,18 @@ Plug 'tomtom/tcomment_vim'
 " Plugin 'flazz/vim-colorschemes'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'gosukiwi/vim-atom-dark'
+Plug 'dcampos/vim-aldmeris'
 
 " Tipos de arquivos
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
-" Repositórios pessoais/forks
-Plug 'dcampos/vim-aldmeris'
-
+" Completação
 Plug 'vim-scripts/javacomplete', { 'for': 'java' }
+
+" Sessão
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 call plug#end()
 
@@ -93,9 +96,6 @@ let g:mapleader = ","
 " let g:html_use_css=0
 let g:html_number_lines = 0
 
-" NERDTree
-" let g:NERDTreeDirArrows=0          " Não exibir setas
-
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
@@ -107,27 +107,6 @@ let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 let g:loaded_syntastic_cpp_gcc_check_header = 1
-
-" Vim-airline
-
-if !has('g:airline_section_b')
-    " let g:airline_section_b = '%<%{getcwd()}'
-endif
-
-" let g:airline_mode_map = {
-"     \ '__' : '-',
-"     \ 'n'  : 'N',
-"     \ 'i'  : 'I',
-"     \ 'R'  : 'R',
-"     \ 'c'  : 'C',
-"     \ 'v'  : 'V',
-"     \ 'V'  : 'V-L',
-"     \ '' : 'V-B',
-"     \ 's'  : 'S',
-"     \ 'S'  : 'S',
-"     \ '' : 'S',
-"     \ }
-let g:airline#extensions#branch#empty_message = '*'
 
 " lightline.vim
 let g:lightline = {
@@ -205,9 +184,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " elseif mysys ==? 'linux'
     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
 " endif
-
-" IndentLine - ver acima: GUI
-" let g:indentLine_char='│'
 
 let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
 
@@ -290,9 +266,6 @@ set statusline+=%<%P                         " file position
 set wildmenu
 
 set wildignorecase
-
-" Usar área de transferência como padrão
-set clipboard=unnamed
 
 " Codificação do texto
 set encoding=iso88591
