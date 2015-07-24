@@ -76,7 +76,8 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
 " Completação
-Plug 'vim-scripts/javacomplete', { 'for': 'java' }
+" Plug 'vim-scripts/javacomplete', { 'for': 'java' }
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
 " Sessão
 Plug 'xolox/vim-session'
