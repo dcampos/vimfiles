@@ -14,7 +14,7 @@ ln -s $(pwd)/vimrc-linux ~/.vimrc
 
 echo "=== Installing plugins..."
 
-vim +'BundleInstall' +qall
+vim +'PlugInstall' +qall
 
 if [ $? = 0 ]
 then
