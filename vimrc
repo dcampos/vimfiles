@@ -189,11 +189,11 @@ let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
 
 " vim-session
 
-let g:session_autoload = 0
-let g:session_persist_colors = 0
+let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
-let g:session_autosave_periodic = 1
+let g:session_autosave_periodic = 5
 let g:session_autosave_silent = 1
+let g:session_persist_colors = 0
 
 
 " }}}
