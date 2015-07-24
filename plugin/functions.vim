@@ -18,7 +18,7 @@ function! s:ToggleWhitespace()
     if !exists('b:ws_highlighting')
         let b:ws_highlighting = 0
     end
-        
+
     if b:ws_highlighting
         call <SID>DisableWhitespace()
     else

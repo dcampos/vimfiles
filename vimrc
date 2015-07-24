@@ -144,7 +144,7 @@ let delimitMate_expand_spac = 1
 
 " Supertab
 " Remap autocomplete menu control keys (luciano-fiandesio/dotfiles)
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 " inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
 " inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
@@ -186,6 +186,15 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " endif
 
 let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
+
+" vim-session
+
+let g:session_autoload = 0
+let g:session_persist_colors = 0
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 1
+let g:session_autosave_silent = 1
+
 
 " }}}
 
@@ -404,9 +413,16 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 
 " Evitar erros ao salvar/sair
-cab W w | cab Q q | cab Wq wq | cab wQ wq | cab WQ wq
+cabbrev W w
+cabbrev Q q
+cabbrev Wq wq
+cabbrev wQ wq
+cabbrev WQ wq
 
 iabbrev enquatno enquanto
+
+cabbrev ss SaveSession
+cabbrev os OpenSession
 
 " }}}
 
@@ -515,6 +531,7 @@ augroup etc_group
 augroup end
 
 " }}}
+
 
 " GUI {{{
 

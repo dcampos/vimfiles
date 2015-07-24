@@ -3,4 +3,5 @@ session
 bundle/
 plugged/
 *.pyc
+.netrwhist
 
