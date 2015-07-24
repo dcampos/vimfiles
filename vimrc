@@ -37,6 +37,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
     \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'c9s/perlomni.vim', { 'for': 'perl' }
+Plug 'hotchpotch/perldoc-vim', { 'for': 'perl' }
 Plug 'Yggdroot/indentLine'
 Plug 'kien/ctrlp.vim'
 Plug 'tyru/open-browser.vim'
@@ -195,6 +196,8 @@ let g:session_autosave_periodic = 5
 let g:session_autosave_silent = 1
 let g:session_persist_colors = 0
 
+" perldoc-vim
+" let g:perldoc_no_default_key_mappings = 1
 
 " }}}
 
@@ -430,17 +433,10 @@ cabbrev os OpenSession
 " DIVERSOS/AUTO-COMANDOS {{{
 
 " Perl
-" Isto é para o perldoc.vim
-" autocmd BufNewFile,BufRead *.p{l,m} setf perl
-" if MySys() == "linux"
-"     autocmd BufNewFile,BufRead *.p{l,m} map <F1> :Perldoc<cword><CR>
-"     autocmd BufNewFile,BufRead *.p{l,m} let g:perldoc_program='/usr/bin/perldoc'
-    " autocmd BufNewFile,BufRead *.p{l,m} source ~/vim_local/ftplugin/perl_doc.vim
-" endif
-
 " Use o compilador do Perl para todos os arquivos com extensão *.pl e *.pm
 augroup ft_perl
     auto!
+    autocmd BufNewFile,BufRead *.p{l,m} map <F1> :Perldoc<cword><CR>
     autocmd BufNewFile,BufRead *.p{l,m} compiler perl
 augroup end
 
