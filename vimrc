@@ -437,21 +437,22 @@ cabbrev os OpenSession
 " Use o compilador do Perl para todos os arquivos com extensão *.pl e *.pm
 augroup ft_perl
     auto!
-    autocmd BufNewFile,BufRead *.p{l,m} map <F1> :Perldoc<cword><CR>
-    autocmd BufNewFile,BufRead *.p{l,m} compiler perl
+    autocmd FileType perl map <F1> :Perldoc<CR>
+    autocmd FileType perl compiler perl
 augroup end
 
 " Python
 " Use o compilador Python para todos os arquivos com extensão *.py
 augroup ft_python
     auto!
-    autocmd BufNewFile,BufRead *.py compiler python
+    autocmd FileType python compiler python
 augroup end
 
 " Java
 augroup ft_java
     auto!
-    autocmd BufNewFile,BufRead *.java set omnifunc=javacomplete#Complete
+    autocmd FileType java set omnifunc=javacomplete#Complete
+    autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
 augroup end
 
 " Ruby
