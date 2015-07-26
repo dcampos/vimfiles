@@ -33,7 +33,7 @@ Plug 'tpope/vim-fugitive'
 " Plugin 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
     \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'c9s/perlomni.vim', { 'for': 'perl' }
@@ -67,6 +67,7 @@ Plug 'airblade/vim-rooter'
 Plug 'tomtom/tcomment_vim'
 
 " Plugin 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'dcampos/vim-aldmeris'
