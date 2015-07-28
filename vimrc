@@ -549,7 +549,7 @@ if has("gui_running")
         set guifont=Dejavu\ Sans\ mono
     elseif g:mysys == "linux"
         set bg=dark
-        colors aldmeris
+        colors base16-default
         " set guifont=Fantasque\ sans\ mono\ 12
 
         " Mostrar símbolos especiais somente em Linux/Gvim
