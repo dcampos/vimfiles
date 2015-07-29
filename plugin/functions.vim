@@ -54,4 +54,5 @@ command! AutoToggleWS  :call <SID>AutoToggleWS()
 command! EnableWhitespace  :call <SID>EnableWhitespace()
 command! DisableWhitespace :call <SID>DisableWhitespace()
 command! RenameFile :call <SID>RenameFile()
+command! Cpanm :!cpanm --sudo <cword>
 
