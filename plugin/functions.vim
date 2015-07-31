@@ -48,11 +48,20 @@ function! s:RenameFile()
     endif
 endfunction
 
+" Installs cpan module
+function! s:Cpanm(...)
+    if len(a:000) > 0
+        exec ':!cpanm --sudo ' . join(a:000, ' ')
+    elseif expand('<cword>') != ''
+        exec ':!cpanm --sudo <cword>'
+    endif
+endfunction
+
 command! -range=% RemoveWhitespace silent! :<line1>,<line2>s/\s\+$//e | normal! ``
 command! ToggleWhitespace  :call <SID>ToggleWhitespace()
 command! AutoToggleWS  :call <SID>AutoToggleWS()
 command! EnableWhitespace  :call <SID>EnableWhitespace()
 command! DisableWhitespace :call <SID>DisableWhitespace()
 command! RenameFile :call <SID>RenameFile()
-command! Cpanm :!cpanm --sudo <cword>
+command! -nargs=* Cpanm :call <SID>Cpanm(<f-args>)
 
