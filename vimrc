@@ -456,7 +456,7 @@ augroup ft_java
     auto!
     autocmd FileType java set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
-    autocmd BufNewFile,BufRead *.java,*.jsp LoadClasspath
+    autocmd BufNewFile,BufRead *.java CallRooter | LoadClasspath
 augroup end
 
 " Ruby
@@ -524,7 +524,7 @@ augroup etc_group
 
     " Muda para o diretório do arquivo atual
     " autocmd BufEnter * lcd %:p:h
-    autocmd BufEnter * Rooter
+    autocmd BufEnter * CallRooter
 
 
     " Destacar espaços em branco

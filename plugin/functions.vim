@@ -57,8 +57,20 @@ function! s:Cpanm(...)
     endif
 endfunction
 
+function! s:CallRooter()
+    if !exists('b:rooter_called')
+        let b:rooter_called = 0
+    endif
+
+    if !b:rooter_called
+        Rooter
+        let b:rooter_called = 1
+    endif
+endfunction
+
 " Carrega classpath Java
 function! s:LoadClasspath()
+    " Rooter
     let filename = 'classpath.txt'
     if file_readable(filename)
         let content = join(readfile(filename), '')
@@ -74,5 +86,6 @@ command! EnableWhitespace  call <SID>EnableWhitespace()
 command! DisableWhitespace call <SID>DisableWhitespace()
 command! RenameFile call <SID>RenameFile()
 command! -nargs=* Cpanm call <SID>Cpanm(<f-args>)
-command! LoadClasspath call <SID>LoadClasspath()
+command! -bar LoadClasspath call <SID>LoadClasspath()
+command! -bar CallRooter call <SID>CallRooter()
 
