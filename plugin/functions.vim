@@ -77,12 +77,11 @@ function! s:LoadClasspath()
     RooterEnter!
     let filename = 'classpath.txt'
     if file_readable(filename)
-        let content = join(readfile(filename), '')
-        let g:my_java_classpath = content
-        return content
+        let g:my_java_classpath = join(readfile(filename), '')
     else
-        return ''
+        let g:my_java_classpath = ''
     endif
+    return g:my_java_classpath
 endfunction
 
 command! -range=% RemoveWhitespace silent! <line1>,<line2>s/\s\+$//e | normal! ``
