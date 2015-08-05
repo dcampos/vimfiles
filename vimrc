@@ -78,7 +78,7 @@ Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
 " Completação
 " Plug 'vim-scripts/javacomplete', { 'for': 'java' }
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
 
 " Sessão
 Plug 'xolox/vim-session'
@@ -455,9 +455,9 @@ augroup end
 " Java
 augroup ft_java
     auto!
-    autocmd FileType java set omnifunc=javacomplete#Complete
+    autocmd FileType java,jsp set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
-    autocmd FileType java LoadClasspath
+    autocmd FileType java,jsp LoadClasspath
 augroup end
 
 " Ruby
