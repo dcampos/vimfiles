@@ -139,7 +139,7 @@ function! CurDir()
     if len(_path) < 15
         return join(_spath, " > ")
     else
-        return _spath[0] . ' > … > ' . _spath[-1]
+        return _spath[0] . ' … ' . _spath[-1]
     endif
 endfunction
 
