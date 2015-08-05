@@ -452,12 +452,15 @@ augroup ft_python
     autocmd FileType python compiler python
 augroup end
 
+    let g:my_java_classpath = ''
 " Java
 augroup ft_java
     auto!
     autocmd FileType java,jsp set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
-    autocmd FileType java,jsp LoadClasspath
+    autocmd FileType java,jsp LoadClasspath |
+                \ let g:syntastic_java_javac_classpath = g:my_java_classpath |
+                \ let g:JavaComplete_LibsPath = g:my_java_classpath
 augroup end
 
 " Ruby

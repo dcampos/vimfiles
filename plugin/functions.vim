@@ -78,8 +78,10 @@ function! s:LoadClasspath()
     let filename = 'classpath.txt'
     if file_readable(filename)
         let content = join(readfile(filename), '')
-        let g:syntastic_java_javac_classpath = content
-        let g:JavaComplete_LibsPath = content
+        let g:my_java_classpath = content
+        return content
+    else
+        return ''
     endif
 endfunction
 
