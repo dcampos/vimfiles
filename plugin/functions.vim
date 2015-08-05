@@ -48,7 +48,7 @@ function! s:RenameFile()
     endif
 endfunction
 
-" Installs cpan module
+" Install cpan module
 function! s:Cpanm(...)
     if len(a:000) > 0
         exec ':!cpanm --sudo ' . join(a:000, ' ')
@@ -57,20 +57,24 @@ function! s:Cpanm(...)
     endif
 endfunction
 
-function! s:CallRooter()
+function! s:RooterLeave()
+    let b:rooter_called = 0
+endfunction
+
+function! s:RooterEnter(bang)
     if !exists('b:rooter_called')
         let b:rooter_called = 0
     endif
 
-    if !b:rooter_called
+    if !b:rooter_called || a:bang
         Rooter
         let b:rooter_called = 1
     endif
 endfunction
 
-" Carrega classpath Java
+" Load Java classpath
 function! s:LoadClasspath()
-    " Rooter
+    RooterEnter!
     let filename = 'classpath.txt'
     if file_readable(filename)
         let content = join(readfile(filename), '')
@@ -87,5 +91,6 @@ command! DisableWhitespace call <SID>DisableWhitespace()
 command! RenameFile call <SID>RenameFile()
 command! -nargs=* Cpanm call <SID>Cpanm(<f-args>)
 command! -bar LoadClasspath call <SID>LoadClasspath()
-command! -bar CallRooter call <SID>CallRooter()
+command! -bar -bang RooterEnter call <SID>RooterEnter(<bang>0)
+command! -bar RooterLeave call <SID>RooterLeave()
 

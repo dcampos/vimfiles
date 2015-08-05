@@ -163,6 +163,7 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>'
 " vim-rooter
 let g:rooter_change_directory_for_non_project_files = 1
 let g:rooter_silent_chdir = 1
+let g:rooter_manual_only = 1
 
 " YCM
 " make YCM compatible with UltiSnips (using supertab)
@@ -456,7 +457,7 @@ augroup ft_java
     auto!
     autocmd FileType java set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
-    autocmd BufNewFile,BufRead *.java CallRooter | LoadClasspath
+    autocmd FileType java LoadClasspath
 augroup end
 
 " Ruby
@@ -524,7 +525,8 @@ augroup etc_group
 
     " Muda para o diretório do arquivo atual
     " autocmd BufEnter * lcd %:p:h
-    autocmd BufEnter * CallRooter
+    autocmd BufEnter * RooterEnter
+    autocmd BufLeave * RooterLeave
 
 
     " Destacar espaços em branco
