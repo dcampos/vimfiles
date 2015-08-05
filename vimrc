@@ -81,8 +81,7 @@ Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
 
 " Sessão
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 
 call plug#end()
 
