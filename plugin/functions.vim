@@ -57,6 +57,16 @@ function! s:Cpanm(...)
     endif
 endfunction
 
+" Carrega classpath Java
+function! s:LoadClasspath()
+    let filename = 'classpath.txt'
+    if file_readable(filename)
+        let content = join(readfile(filename), '')
+        let g:syntastic_java_javac_classpath = content
+        let g:JavaComplete_LibsPath = content
+    endif
+endfunction
+
 command! -range=% RemoveWhitespace silent! <line1>,<line2>s/\s\+$//e | normal! ``
 command! ToggleWhitespace  call <SID>ToggleWhitespace()
 command! AutoToggleWS  call <SID>AutoToggleWS()
@@ -64,4 +74,5 @@ command! EnableWhitespace  call <SID>EnableWhitespace()
 command! DisableWhitespace call <SID>DisableWhitespace()
 command! RenameFile call <SID>RenameFile()
 command! -nargs=* Cpanm call <SID>Cpanm(<f-args>)
+command! LoadClasspath call <SID>LoadClasspath()
 

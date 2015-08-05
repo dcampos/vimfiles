@@ -456,6 +456,7 @@ augroup ft_java
     auto!
     autocmd FileType java set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F5> :call javacomplete#AddImport()<cr>
+    autocmd BufNewFile,BufRead *.java,*.jsp LoadClasspath
 augroup end
 
 " Ruby
