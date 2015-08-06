@@ -451,7 +451,6 @@ augroup ft_python
     autocmd FileType python compiler python
 augroup end
 
-    let g:my_java_classpath = ''
 " Java
 augroup ft_java
     auto!
