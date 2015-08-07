@@ -126,9 +126,8 @@ let g:lightline = {
 
 function! MyFugitive()
   if exists("*fugitive#head")
-    let dirty = strlen(system('git diff --ignore-submodules HEAD')) ? ' *' : ''
     let _ = fugitive#head()
-    return strlen(_) ? '' . _ . dirty : ''
+    return strlen(_) ? '' . _ : ''
   endif
   return ''
 endfunction
