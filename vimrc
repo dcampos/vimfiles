@@ -208,7 +208,7 @@ let g:session_persist_colors = 0
 " let g:perldoc_no_default_key_mappings = 1
 
 " vim-addon-local-vimrc
-let g:local_vimrc = { 'names': ['.lvimrc'] }
+let g:local_vimrc = { 'names': ['.lvimrc'], 'hash_fun': 'LVRHashOfFile' }
 
 " }}}
 
@@ -551,6 +551,7 @@ augroup end
 if has("gui_running")
     set columns=100 lines=40
     set guioptions-=T                  " -toolbar
+    set guioptions+=c
 
 
     " To save, press ctrl-s.

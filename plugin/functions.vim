@@ -16,11 +16,7 @@ endfunction
 " Whitespace functions {{{
 
 function! s:SetupWhitespace()
-    if !exists('b:ws_enabled') && exists('g:ws_enabled')
-        let b:ws_enabled = g:ws_enabled
-    elseif !exists('b:ws_enabled')
-        let b:ws_enabled = 0
-    endif
+    let b:ws_enabled = get(g:, 'ws_enabled', 0)
 endfunction
 
 " Toggle trailing white space highlighting
