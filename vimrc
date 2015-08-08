@@ -47,7 +47,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 
 " Requisito: Python
-if g:mysys == "linux"
+if has('python')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'Valloric/YouCompleteMe',
                 \ { 'do': './install.sh --clang-completer --system-libclang'}
