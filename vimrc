@@ -549,7 +549,13 @@ augroup end
 " GUI {{{
 
 if has("gui_running")
-    set columns=100 lines=40
+    if &columns < 100
+        set columns=100
+    endif
+    if &lines < 40
+        set lines=40
+    endif
+
     set guioptions-=T                  " -toolbar
     set guioptions+=c
 
