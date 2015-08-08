@@ -98,6 +98,8 @@ let g:mapleader = ","
 " let g:html_use_css=0
 let g:html_number_lines = 0
 
+let g:ws_enabled = 1
+
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
@@ -531,8 +533,9 @@ augroup etc_group
 
 
     " Destacar espaços em branco
-    autocmd BufRead,InsertLeave,InsertEnter * silent! :EnableWhitespace
-    autocmd InsertEnter * silent! :DisableWhitespace
+    autocmd VimEnter,BufNewFile,BufRead * silent! :SetupWhitespace
+    autocmd BufRead,InsertLeave * silent! :ShowWhitespace
+    autocmd InsertEnter * silent! :HideWhitespace
 augroup end
 
 " }}}
@@ -556,7 +559,6 @@ if has("gui_running")
     elseif g:mysys == "linux"
         set bg=dark
         colors base16-default
-        " set guifont=Fantasque\ sans\ mono\ 12
 
         " Mostrar símbolos especiais somente em Linux/Gvim
         let g:airline_powerline_fonts=1

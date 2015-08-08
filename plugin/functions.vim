@@ -13,29 +13,47 @@ function! MySys()
     endif
 endfunction
 
+" Whitespace functions {{{
+
+function! s:SetupWhitespace()
+    if !exists('b:ws_enabled') && exists('g:ws_enabled')
+        let b:ws_enabled = g:ws_enabled
+    elseif !exists('b:ws_enabled')
+        let b:ws_enabled = 0
+    endif
+endfunction
+
 " Toggle trailing white space highlighting
 function! s:ToggleWhitespace()
-    if !exists('b:ws_highlighting')
-        let b:ws_highlighting = 0
-    end
-
-    if b:ws_highlighting
-        call <SID>DisableWhitespace()
+    if b:ws_enabled
+        let b:ws_enabled = 0
+        call <SID>HideWhitespace()
     else
-        call <SID>EnableWhitespace()
+        let b:ws_enabled = 1
+        call <SID>ShowWhitespace()
+    endif
+endfunction
+
+function! s:HideWhitespace()
+    highlight link ExtraWhitespace NONE
+endfunction
+
+function! s:ShowWhitespace()
+    if b:ws_enabled
+        highlight link ExtraWhitespace Error
+        match ExtraWhitespace /\s\+$/
     endif
 endfunction
 
 function! s:DisableWhitespace()
-    highlight link ExtraWhitespace NONE
-    let b:ws_highlighting = 0
+    let b:ws_enabled = 0
 endfunction
 
 function! s:EnableWhitespace()
-    highlight link ExtraWhitespace Error
-    match ExtraWhitespace /\s\+$/
-    let b:ws_highlighting = 1
+    let b:ws_enabled = 1
 endfunction
+
+" }}}
 
 " Source: http://stackoverflow.com/q/1205286/
 function! s:RenameFile()
@@ -86,12 +104,15 @@ endfunction
 
 command! -range=% RemoveWhitespace silent! <line1>,<line2>s/\s\+$//e | normal! ``
 command! ToggleWhitespace  call <SID>ToggleWhitespace()
-command! AutoToggleWS  call <SID>AutoToggleWS()
-command! EnableWhitespace  call <SID>EnableWhitespace()
+command! ShowWhitespace  call <SID>ShowWhitespace()
+command! HideWhitespace call <SID>HideWhitespace()
+command! EnableWhitespace call <SID>EnableWhitespace()
 command! DisableWhitespace call <SID>DisableWhitespace()
+command! SetupWhitespace call <SID>SetupWhitespace()
 command! RenameFile call <SID>RenameFile()
 command! -nargs=* Cpanm call <SID>Cpanm(<f-args>)
 command! -bar LoadClasspath call <SID>LoadClasspath()
 command! -bar -bang RooterEnter call <SID>RooterEnter(<bang>0)
 command! -bar RooterLeave call <SID>RooterLeave()
 
+" vim:fdm=marker
