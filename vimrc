@@ -83,6 +83,8 @@ Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
 " Sessão
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 
+Plug 'MarcWeber/vim-addon-local-vimrc'
+
 call plug#end()
 
 " END VIM-PLUG }}}
@@ -204,6 +206,9 @@ let g:session_persist_colors = 0
 
 " perldoc-vim
 " let g:perldoc_no_default_key_mappings = 1
+
+" vim-addon-local-vimrc
+let g:local_vimrc = { 'names': ['.lvimrc'] }
 
 " }}}
 
