@@ -39,7 +39,7 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
 Plug 'c9s/perlomni.vim', { 'for': 'perl' }
 Plug 'hotchpotch/perldoc-vim', { 'for': 'perl' }
 Plug 'Yggdroot/indentLine'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
