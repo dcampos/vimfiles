@@ -85,6 +85,8 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 
 Plug 'MarcWeber/vim-addon-local-vimrc'
 
+Plug 'jaxbot/browserlink.vim'
+
 call plug#end()
 
 " END VIM-PLUG }}}
