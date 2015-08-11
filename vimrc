@@ -19,18 +19,13 @@ set nocompatible
 
 " VIM-PLUG {{{
 
-" set the runtime path to include Vundle and initialize
-
 call plug#begin(s:vim_folder . "plugged/")
 
-" Keep Plugin commands between here and filetype plugin indent on.
-" scripts on GitHub repos
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'easymotion/vim-easymotion'
@@ -53,9 +48,6 @@ if has('python')
                 \ { 'do': './install.sh --clang-completer --system-libclang'}
 endif
 
-" Plugin 'drmingdrmer/xptemplate'
-" Plugin 'ludovicchabant/vim-lawrencium'
-
 Plug 'pgilad/vim-skeletons'
 
 " http://www.lucianofiandesio.com/vim-configuration-for-happy-java-coding
@@ -63,10 +55,8 @@ Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-rooter'
 
-" Plugin 'Marslo/EnhCommentify.vim'
 Plug 'tomtom/tcomment_vim'
 
-" Plugin 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'gosukiwi/vim-atom-dark'
@@ -77,7 +67,6 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
 " Completação
-" Plug 'vim-scripts/javacomplete', { 'for': 'java' }
 Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
 
 " Sessão
