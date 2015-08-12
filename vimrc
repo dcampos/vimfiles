@@ -111,7 +111,12 @@ let g:loaded_syntastic_cpp_gcc_check_header = 1
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'curdir', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'curdir', 'filename', 'modified' ] ],
+      \   'right': [ [ 'column' ], [ 'percent' ], [ 'fileformat' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'filename' ] ],
+      \   'right': [ ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'MyFugitive',
@@ -184,6 +189,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " elseif mysys ==? 'linux'
     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
 " endif
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 
 let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
 
