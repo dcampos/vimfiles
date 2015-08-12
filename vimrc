@@ -190,6 +190,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
 " endif
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ctrlp_prompt_mappings = {
+            \ 'ToggleType(1)'  : [ '<tab>' ],
+            \ 'ToggleType(-1)' : [ '<s-tab>' ],
+            \ 'ToggleFocus()'  : [ '<c-f>' ],
+            \ 'PrtExpandDir()' : [ '<c-space>' ],
+            \ }
 
 let skeletons#skeletonsDir = s:vim_folder . '/skeletons'
 
