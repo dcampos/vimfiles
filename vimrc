@@ -561,6 +561,10 @@ if has("gui_running")
 
     set guioptions-=T                  " -toolbar
     set guioptions+=c
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
 
 
     " To save, press ctrl-s.
