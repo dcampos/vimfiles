@@ -76,6 +76,8 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 
 Plug 'jaxbot/browserlink.vim'
 
+Plug 'ap/vim-css-color'
+
 call plug#end()
 
 " END VIM-PLUG }}}
