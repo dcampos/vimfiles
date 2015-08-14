@@ -561,8 +561,7 @@ if has("gui_running")
         set lines=40
     endif
 
-    set guioptions-=T                  " -toolbar
-    set guioptions+=c
+    set guioptions=gAmec
 
 
     " To save, press ctrl-s.
