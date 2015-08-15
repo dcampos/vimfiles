@@ -315,7 +315,7 @@ endif
 " Necessário para exibir corretamente todos os caracteres
 set encoding=utf8
 
-set fillchars=vert:\ ,stl:\ ,stlnc:\ ,
+set fillchars=vert:\ ,stl:\ ,stlnc:\ ,fold:-,diff:-
 
 " }}}
 
