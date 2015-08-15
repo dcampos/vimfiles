@@ -60,7 +60,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'chriskempson/base16-vim'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'gosukiwi/vim-atom-dark'
-Plug 'dcampos/vim-aldmeris'
+Plug 'veloce/vim-aldmeris'
 
 " Tipos de arquivos
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -314,6 +314,8 @@ endif
 
 " Necessário para exibir corretamente todos os caracteres
 set encoding=utf8
+
+set fillchars=vert:\ ,stl:\ ,stlnc:\ ,
 
 " }}}
 
