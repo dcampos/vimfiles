@@ -5,4 +5,6 @@ bundle/
 plugged/
 *.pyc
 .netrwhist
+eclim/
+plugin/eclim.vim
 
