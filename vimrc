@@ -44,8 +44,7 @@ Plug 'mileszs/ack.vim'
 " Requisito: Python
 if has('python')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'Valloric/YouCompleteMe',
-                \ { 'do': './install.sh --clang-completer --system-libclang'}
+    Plug 'Valloric/YouCompleteMe'
 endif
 
 Plug 'pgilad/vim-skeletons'
