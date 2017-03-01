@@ -66,14 +66,14 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'dcampos/proguard.vim', { 'for': 'proguard' }
 
 " Completação
-Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
+" Plug 'artur-shaik/vim-javacomplete2', { 'for': ['java', 'jsp'] }
 
 " Sessão
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 
 Plug 'MarcWeber/vim-addon-local-vimrc'
 
-Plug 'jaxbot/browserlink.vim'
+" Plug 'jaxbot/browserlink.vim'
 
 Plug 'ap/vim-css-color'
 
@@ -575,7 +575,7 @@ if has("gui_running")
         set guifont=Dejavu\ Sans\ mono
     elseif g:mysys == "linux"
         set bg=dark
-        colors base16-default
+        colors base16-default-dark
 
         " Mostrar símbolos especiais somente em Linux/Gvim
         let g:airline_powerline_fonts=1
