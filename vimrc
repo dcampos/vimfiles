@@ -77,6 +77,8 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 
 Plug 'ap/vim-css-color'
 
+Plug 'quabug/vim-gdscript'
+
 call plug#end()
 
 " END VIM-PLUG }}}
