@@ -33,6 +33,7 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
     \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'c9s/perlomni.vim', { 'for': 'perl' }
 Plug 'hotchpotch/perldoc-vim', { 'for': 'perl' }
+Plug 'vim-perl/vim-perl6'
 Plug 'Yggdroot/indentLine'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tyru/open-browser.vim'
