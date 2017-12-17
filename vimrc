@@ -301,9 +301,6 @@ set wildmenu
 
 set wildignorecase
 
-" Codificação do texto
-set encoding=iso88591
-
 " Adiciona _ a iskeyword
 set iskeyword+=_
 
