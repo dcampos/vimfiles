@@ -27,7 +27,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
     \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -80,6 +80,8 @@ Plug 'ap/vim-css-color'
 
 Plug 'quabug/vim-gdscript'
 
+Plug 'junegunn/vim-easy-align'
+
 call plug#end()
 
 " END VIM-PLUG }}}
@@ -110,6 +112,8 @@ let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 let g:loaded_syntastic_cpp_gcc_check_header = 1
+let g:syntastic_perl6_checkers = ['perl6']
+let g:syntastic_enable_perl6_checker = 1
 
 " lightline.vim
 let g:lightline = {
@@ -428,6 +432,10 @@ noremap <Leader>ss :set spell!<cr>
 
 " sudo
 cnoremap w!! %!sudo tee > /dev/null %
+
+" EasyAlign
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " }}}
 
