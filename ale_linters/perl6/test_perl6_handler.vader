@@ -1,0 +1,45 @@
+Before:
+  Save g:ale_warn_about_trailing_blank_lines
+  Save g:ale_warn_about_trailing_whitespace
+
+  let g:ale_warn_about_trailing_blank_lines = 1
+  let g:ale_warn_about_trailing_whitespace = 1
+
+  runtime ale_linters/perl6/perl6.vim
+
+After:
+  Restore
+
+  unlet! b:ale_warn_about_trailing_blank_lines
+  unlet! b:ale_warn_about_trailing_whitespace
+
+  call ale#linter#Reset()
+  silent file something_else.py
+
+Execute(Basic JSON parsing by the handler):
+  AssertEqual
+  \ [
+  \   {
+  \     'type': 'E',
+  \     'lnum': 5,
+  \     'col': 65,
+  \     'text': 'Malformed my (did you mean to declare a sigilless \\counter or $counter?)',
+  \   },
+  \ ],
+  \ ale_linters#perl6#perl6#Handle(bufnr(''), [
+  \ '{',
+  \ '"X::Syntax::Malformed" : {',
+  \ '  "highexpect" : [ ],',
+  \ '  "line" : 5,',
+  \ '  "pre" : "my counter",',
+  \ '  "filename" : "/home/dpc/tmp/lang-bench.p6",',
+  \ '  "is-compile-time" : 1,',
+  \ '  "pos" : 65,',
+  \ '  "column" : null,',
+  \ '  "modules" : [ ],',
+  \ '  "post" : " = 0;",',
+  \ '  "what" : "my (did you mean to declare a sigilless \\counter or $counter?)",',
+  \ '  "message" : "Malformed my (did you mean to declare a sigilless \\\\counter or $counter?)"',
+  \ '}',
+  \ '}'
+  \ ])

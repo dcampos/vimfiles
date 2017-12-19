@@ -27,7 +27,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do':
     \ 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -45,7 +46,7 @@ Plug 'mileszs/ack.vim'
 " Requisito: Python
 if has('python')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
 endif
 
 Plug 'pgilad/vim-skeletons'
@@ -81,6 +82,8 @@ Plug 'ap/vim-css-color'
 Plug 'quabug/vim-gdscript'
 
 Plug 'junegunn/vim-easy-align'
+
+Plug 'junegunn/vader.vim'
 
 call plug#end()
 
