@@ -21,25 +21,46 @@ Execute(Basic JSON parsing by the handler):
   \ [
   \   {
   \     'type': 'E',
-  \     'lnum': 5,
-  \     'col': 65,
-  \     'text': 'Malformed my (did you mean to declare a sigilless \\counter or $counter?)',
+  \     'lnum': 3,
+  \     'col': 6,
+  \     'text': 'Variable ''$Starting'' is not declared',
   \   },
   \ ],
   \ ale_linters#perl6#perl6#Handle(bufnr(''), [
   \ '{',
-  \ '"X::Syntax::Malformed" : {',
-  \ '  "highexpect" : [ ],',
-  \ '  "line" : 5,',
-  \ '  "pre" : "my counter",',
-  \ '  "filename" : "/home/dpc/tmp/lang-bench.p6",',
-  \ '  "is-compile-time" : 1,',
-  \ '  "pos" : 65,',
-  \ '  "column" : null,',
-  \ '  "modules" : [ ],',
-  \ '  "post" : " = 0;",',
-  \ '  "what" : "my (did you mean to declare a sigilless \\counter or $counter?)",',
-  \ '  "message" : "Malformed my (did you mean to declare a sigilless \\\\counter or $counter?)"',
+  \ '  "X::Undeclared" : {',
+  \ '    "highexpect" : [ ],',
+  \ '    "line" : 3,',
+  \ '    "pre" : "say \"",',
+  \ '    "filename" : "/tmp/lang-bench.p6",',
+  \ '    "suggestions" : [ ],',
+  \ '    "is-compile-time" : 1,',
+  \ '    "pos" : 27,',
+  \ '    "column" : null,',
+  \ '    "modules" : [ ],',
+  \ '    "symbol" : "$Starting",',
+  \ '    "post" : "$Starting calculations...\";",',
+  \ '    "what" : "Variable",',
+  \ '    "message" : "Variable ''$Starting'' is not declared"',
+  \ '  }',
   \ '}',
-  \ '}'
+  \ ])
+
+Execute(Should handle invalid column number):
+  AssertEqual
+  \ [
+  \   {
+  \     'type': 'E',
+  \     'lnum': v:null,
+  \     'col': v:null,
+  \     'text': 'Could not find Foo at line 3',
+  \   },
+  \ ],
+  \ ale_linters#perl6#perl6#Handle(bufnr(''), [
+  \ '{',
+  \ '  "X::CompUnit::UnsatisfiedDependency" : {',
+  \ '    "specification" : "Foo",',
+  \ '    "message" : "Could not find Foo at line 3"',
+  \ '  }',
+  \ '}',
   \ ])

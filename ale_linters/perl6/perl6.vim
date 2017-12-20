@@ -32,10 +32,22 @@ function! ale_linters#perl6#perl6#Handle(buffer, lines) abort
     let l:output = []
 
     for l:error in values(l:errors)
+        let l:col = has_key(l:error, 'pre')
+        \    ? len(l:error['pre']) + 1
+        \    : v:null
+
+        let l:lnum = has_key(l:error, 'line')
+        \    ? l:error['line']
+        \    : v:null
+
+        let l:text = has_key(l:error, 'message')
+        \    ? l:error['message']
+        \    : v:null
+
         call add(l:output, {
-        \   'lnum': l:error['line'],
-        \   'text': l:error['message'],
-        \   'col': len(l:error['pre']) + 1,
+        \   'lnum': l:lnum,
+        \   'text': l:text,
+        \   'col': l:col,
         \   'type': 'E',
         \})
     endfor
